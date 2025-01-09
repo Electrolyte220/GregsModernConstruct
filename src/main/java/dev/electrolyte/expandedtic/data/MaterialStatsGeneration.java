@@ -48,12 +48,12 @@ public class MaterialStatsGeneration {
                 new LimbMaterialStats(
                         (int) (material.getToolTier().getUses() * LIMB_DURABILITY_MODIFIER),
                         material.getMass() * LIMB_DRAW_SPEED_MODIFIER,
-                        material.getMass() * LIMB_VELOCITY_MODIFIER,
-                        material.getMass() * LIMB_ACCURACY_MODIFIER),
+                        -material.getMass() * LIMB_VELOCITY_MODIFIER,
+                        -material.getMass() * LIMB_ACCURACY_MODIFIER),
                 new GripMaterialStats(
                         GRIP_DURABILITY_MODIFIER,
-                        material.getMass() * GRIP_ACCURACY_MODIFIER,
-                        material.getMass() * GRIP_MELEE_DAMAGE_MODIFIER),
+                        GRIP_ACCURACY_MODIFIER,
+                        GRIP_MELEE_DAMAGE_MODIFIER),
                 HandleMaterialStats.multipliers()
                         .durability(HANDLE_DURABILITY_MODIFIER)
                         .miningSpeed(HANDLE_MINING_SPEED_MODIFIER)

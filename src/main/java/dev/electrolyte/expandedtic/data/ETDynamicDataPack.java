@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.expandedtic.ExpandedTiC;
+import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.SharedConstants;
@@ -61,7 +62,7 @@ public class ETDynamicDataPack implements PackResources {
         List<String> ignoredDef = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatDefGen);
         List<String> ignoredStats = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatStatsGen);
         List<String> ignoredTraits = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatTraitsGen);
-        for(Material material : ExpandedTiC.REGISTERED_TOOL_MATERIALS) {
+        for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(ExpandedTiC.materialId(material.getName()), material);
             if(!ignoredDef.contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());

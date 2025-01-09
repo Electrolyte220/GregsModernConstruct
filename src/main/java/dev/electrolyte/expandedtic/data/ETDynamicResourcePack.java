@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.expandedtic.ExpandedTiC;
+import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.SharedConstants;
@@ -45,7 +46,7 @@ public class ETDynamicResourcePack implements PackResources {
 
     public static void generateAllAssets() {
         JsonObject langObject = new JsonObject();
-        for(Material material : ExpandedTiC.REGISTERED_TOOL_MATERIALS) {
+        for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialRenderInfoGeneration.INSTANCE.generateRenderInfo(ExpandedTiC.id(material.getName()), material);
             DATA.put(data.getFirst(), data.getSecond());
 

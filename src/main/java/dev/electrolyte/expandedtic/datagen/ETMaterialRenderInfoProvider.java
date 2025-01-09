@@ -2,6 +2,7 @@ package dev.electrolyte.expandedtic.datagen;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import dev.electrolyte.expandedtic.ExpandedTiC;
+import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import slimeknights.tconstruct.library.client.data.material.AbstractMaterialRenderInfoProvider;
@@ -16,7 +17,7 @@ public class ETMaterialRenderInfoProvider extends AbstractMaterialRenderInfoProv
 
     @Override
     protected void addMaterialRenderInfo() {
-        for(Material material : ExpandedTiC.REGISTERED_TOOL_MATERIALS) {
+        for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             buildRenderInfo(ExpandedTiC.materialId(material.getName())).color(material.getMaterialRGB()).fallbacks("metal");
         }
     }

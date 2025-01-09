@@ -27,7 +27,7 @@ description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]
     modId="gtceu"
-    mandatory=true
+    mandatory=false
     versionRange="[${gtceu_version},)"
     ordering="AFTER"
     side="BOTH"
