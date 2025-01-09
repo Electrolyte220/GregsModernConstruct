@@ -87,7 +87,6 @@ repositories {
     maven { url = 'https://maven.firstdarkdev.xyz/snapshots'
         content {
             includeGroup 'com.lowdragmc.ldlib'
-            includeGroup 'dev.toma.configuration'
         }
     }
 
@@ -103,6 +102,13 @@ repositories {
             includeGroup 'slimeknights.mantle'
         }
     }
+
+    maven { url = 'https://cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+
     maven { url = 'https://maven.parchmentmc.org' }
     maven { url = 'https://maven.neoforged.net/releases' }
 }
@@ -114,7 +120,7 @@ dependencies {
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim"
     modImplementation "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     modImplementation "slimeknights.tconstruct:TConstruct:${minecraft_version}-${tinkers_version}"
-    modImplementation "dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}"
+    modImplementation "curse.maven:configuration-444699:${configuration_cf_version}"
 
     modRuntimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
     modRuntimeOnly "com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}"
@@ -127,7 +133,8 @@ tasks.named('processResources', ProcessResources).configure {
             loader_version_range: loader_version_range,
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
-            gtceu_version: gtceu_version, tconstruct_version: tinkers_version
+            gtceu_version: gtceu_version, tconstruct_version: tinkers_version,
+            configuration_version: configuration_version
     ]
     inputs.properties replaceProperties
 

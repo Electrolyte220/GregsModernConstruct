@@ -14,16 +14,14 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.MetadataSectionSerializer;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.resources.IoSupplier;
-import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+@ParametersAreNonnullByDefault
 public class ETDynamicDataPack implements PackResources {
 
     private static final ObjectSet<String> SERVER_DOMAINS = new ObjectOpenHashSet<>();
@@ -60,17 +58,24 @@ public class ETDynamicDataPack implements PackResources {
     }
 
     public static void generateAllMaterialData() {
+        List<String> ignoredDef = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatDefGen);
+        List<String> ignoredStats = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatStatsGen);
+        List<String> ignoredTraits = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatTraitsGen);
         for(Material material : ExpandedTiC.REGISTERED_TOOL_MATERIALS) {
-            MaterialId key = ExpandedTiC.materialId(material.getName());
-
-            Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(key, material);
-            DATA.put(data.getFirst(), data.getSecond());
+            Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(ExpandedTiC.materialId(material.getName()), material);
+            if(!ignoredDef.contains(material.getName())) {
+                DATA.put(data.getFirst(), data.getSecond());
+            }
 
             data = MaterialStatsGeneration.INSTANCE.generateMaterialStats(material);
-            DATA.put(data.getFirst(), data.getSecond());
+            if(!ignoredStats.contains(material.getName())) {
+                DATA.put(data.getFirst(), data.getSecond());
+            }
 
             data = MaterialTraitsGeneration.INSTANCE.generateMaterialTraits(material);
-            DATA.put(data.getFirst(), data.getSecond());
+            if(!ignoredTraits.contains(material.getName())) {
+                DATA.put(data.getFirst(), data.getSecond());
+            }
         }
     }
 

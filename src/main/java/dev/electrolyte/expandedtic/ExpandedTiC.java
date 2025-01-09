@@ -6,8 +6,9 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.mojang.logging.LogUtils;
 import dev.electrolyte.expandedtic.config.ETModConfig;
-import dev.electrolyte.expandedtic.data.ETDynamicDataPack;
 import dev.electrolyte.expandedtic.data.ETDynamicResourcePack;
+import dev.toma.configuration.Configuration;
+import dev.toma.configuration.config.format.ConfigFormats;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -17,8 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Mod(ExpandedTiC.MOD_ID)
@@ -27,15 +27,17 @@ public class ExpandedTiC {
     public static final String MOD_ID = "expandedtic";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final GTRegistrate REGISTRATE = GTRegistrate.create(MOD_ID);
+    public static ETModConfig CONFIG_INSTANCE;
 
-    public static Collection<Material> REGISTERED_TOOL_MATERIALS = new ArrayList<>();
+    public static HashSet<Material> REGISTERED_TOOL_MATERIALS = new HashSet<>();
 
     public ExpandedTiC() {
         MinecraftForge.EVENT_BUS.register(this);
         REGISTRATE.registerRegistrate();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupMaterials);
-        ETModConfig.init();
+        CONFIG_INSTANCE = Configuration.registerConfig(ETModConfig.class, ConfigFormats.YAML).getConfigInstance();
+        //SMConfig.BUILDER.build();
     }
 
     private void gatherData(GatherDataEvent event) {
@@ -57,13 +59,13 @@ public class ExpandedTiC {
     private void setupMaterials(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             REGISTERED_TOOL_MATERIALS = GTCEuAPI.materialManager.getRegisteredMaterials().stream().filter(m -> {
-                for(String s : ETModConfig.INSTANCE.ignoredGTMaterials) {
+                for(String s : ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredGTMaterials) {
                     if(m.getName().equals(s)) return false;
                 }
                 return m.hasProperty(PropertyKey.TOOL);
-            }).collect(Collectors.toCollection(ArrayList::new));
+            }).collect(Collectors.toCollection(HashSet::new));
 
-            ETDynamicDataPack.generateAllMaterialData();
+            //ETDynamicDataPack.generateAllMaterialData();
             ETDynamicResourcePack.generateAllAssets();
         });
     }
