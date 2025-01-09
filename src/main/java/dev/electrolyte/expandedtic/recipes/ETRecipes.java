@@ -8,5 +8,6 @@ public class ETRecipes {
 
     public static void register(Consumer<FinishedRecipe> provider) {
         ETExtruderRecipes.register(provider);
+        new ETMaterialRecipes(provider);
     }
 }
