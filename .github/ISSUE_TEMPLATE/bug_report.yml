@@ -1,0 +1,58 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: mc_version
+    attributes:
+      label: Minecraft Version
+      description: What version of minecraft are you using?
+      options:
+        - 1.20.1
+    validations:
+      required: true
+  - type: input
+    id: modloader_version
+    attributes:
+      label: Modloader Version
+      description: What version of Forge are you using?
+    validations:
+      required: true
+  - type: input
+    id: gt_version
+    attributes:
+      label: GregTech Modern Version
+      description: What version of GregTech Modern are you using?
+    validations:
+      required: true
+  - type: input
+    id: tcon_version
+    attributes:
+      label: Tinker's Construct Version
+      description: What version of Tinker's Construct are you using?
+    validations:
+      required: true
+  - type: input
+    id: gm_construct_version
+    attributes:
+      label: Greg's Material Construct Version
+      description: What version of Greg's Material Construct are you using?
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: How did this bug ouccur? (Include steps to reproduce, if relevant)
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log/Crash Report
+      description: Please include a log file/crash report (if relevant)
+    validations:
+      required: false
