@@ -1,8 +1,8 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
-import dev.electrolyte.expandedtic.ExpandedTiC;
+import dev.electrolyte.gm_construct.GMConstruct;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.resources.ResourceLocation;
@@ -22,12 +22,12 @@ public class MaterialRenderInfoGeneration {
 
     protected Pair<ResourceLocation, byte[]> generateRenderInfo(ResourceLocation texture, Material material) {
         MaterialRenderInfoJson json = getBuilder(texture, material).build();
-        return new Pair<>(new ResourceLocation(ExpandedTiC.MOD_ID, "tinkering/materials/" + material.getName() + ".json"), MaterialRenderInfoLoader.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/" + material.getName() + ".json"), MaterialRenderInfoLoader.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 
     private RenderInfoBuilder getBuilder(ResourceLocation texture, Material material) {
         RenderInfoBuilder builder = new RenderInfoBuilder();
-        MaterialSpriteInfo spriteInfo = new ETMaterialSpriteInfoBuilder(texture)
+        MaterialSpriteInfo spriteInfo = new GMCMaterialSpriteInfoBuilder(texture)
                 .meleeHarvest().ranged().fallbacks("metal")
                 .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, material.getMaterialARGB()).build()).build();
         if (spriteInfo != null) {

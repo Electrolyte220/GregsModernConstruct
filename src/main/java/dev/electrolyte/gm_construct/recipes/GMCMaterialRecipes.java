@@ -1,27 +1,27 @@
-package dev.electrolyte.expandedtic.recipes;
+package dev.electrolyte.gm_construct.recipes;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import dev.electrolyte.expandedtic.ExpandedTiC;
-import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
+import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 
 import java.util.function.Consumer;
 
-public class ETMaterialRecipes implements IMaterialRecipeHelper {
+public class GMCMaterialRecipes implements IMaterialRecipeHelper {
 
-    public ETMaterialRecipes(Consumer<FinishedRecipe> provider) {
+    public GMCMaterialRecipes(Consumer<FinishedRecipe> provider) {
         register(provider);
     }
 
     public void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
-            metalMaterialRecipe(provider, ExpandedTiC.materialId(material.getName()), "tools/materials/", material.getName(), true);
+            metalMaterialRecipe(provider, GMConstruct.materialId(material.getName()), "tools/materials/", material.getName(), true);
         }
     }
 
     @Override
     public String getModId() {
-        return ExpandedTiC.MOD_ID;
+        return GMConstruct.MOD_ID;
     }
 }

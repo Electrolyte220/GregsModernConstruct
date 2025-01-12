@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "dev.electrolyte.gm_construct.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ConfigEnabledConditionInvoker"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "gm_construct-refmap.json",
+  "client": []
+}

@@ -1,10 +1,11 @@
-package dev.electrolyte.expandedtic.recipes;
+package dev.electrolyte.gm_construct.recipes;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
-import dev.electrolyte.expandedtic.ExpandedTiC;
-import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
+import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.config.GMCConfig;
+import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.mantle.registration.object.ItemObject;
@@ -20,7 +21,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.ingot;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.EXTRUDER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES;
 
-public class ETExtruderRecipes {
+public class GMCExtruderRecipes {
 
     public static void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
@@ -31,7 +32,7 @@ public class ETExtruderRecipes {
                 inputMaterial = new UnificationEntry(ingot, material);
             }
 
-            if(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.generateExtruderRecipes) {
+            if(GMCConfig.GENERATE_EXTRUDER_RECIPES.get()) {
                 generateExtruderRecipes(inputMaterial, TinkerToolParts.repairKit, 2, TinkerSmeltery.repairKitCast, "repair_kit", provider);
 
                 generateExtruderRecipes(inputMaterial, TinkerToolParts.pickHead, 2, TinkerSmeltery.pickHeadCast, "pick_head", provider);
@@ -51,7 +52,7 @@ public class ETExtruderRecipes {
                 generateExtruderRecipes(inputMaterial, TinkerToolParts.toughHandle, 3, TinkerSmeltery.toughHandleCast, "tough_handle", provider);
             }
 
-            if(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.generateFluidSolidificationRecipes) {
+            if(GMCConfig.GENERATE_FLUID_SOLIDIFICATION_RECIPES.get()) {
                 generateSolidifierRecipes(inputMaterial, TinkerToolParts.repairKit, 2, TinkerSmeltery.repairKitCast, "repair_kit", provider);
 
                 generateSolidifierRecipes(inputMaterial, TinkerToolParts.pickHead, 2, TinkerSmeltery.pickHeadCast, "pick_head", provider);
@@ -74,7 +75,7 @@ public class ETExtruderRecipes {
     }
 
     private static void generateExtruderRecipes(UnificationEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
-        EXTRUDER_RECIPES.recipeBuilder(ExpandedTiC.id("extrude_" + inputMaterial.material.getName() + "_to_" + path))
+        EXTRUDER_RECIPES.recipeBuilder(GMConstruct.id("extrude_" + inputMaterial.material.getName() + "_to_" + path))
                 .inputItems(inputMaterial, materialCost)
                 .notConsumable(cast)
                 .outputItems(getToolStack(toolPartStack, inputMaterial.material))
@@ -84,7 +85,7 @@ public class ETExtruderRecipes {
     }
 
     private static void generateSolidifierRecipes(UnificationEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(ExpandedTiC.id("extrude_" + inputMaterial.material.getName() + "_to_" + path))
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GMConstruct.id("extrude_" + inputMaterial.material.getName() + "_to_" + path))
                 .inputFluids(inputMaterial.material.getFluid(materialCost * L))
                 .notConsumable(cast)
                 .outputItems(getToolStack(toolPartStack, inputMaterial.material))
@@ -95,7 +96,7 @@ public class ETExtruderRecipes {
 
     private static ItemStack getToolStack(ItemObject<?> toolPart, Material material) {
         ItemStack stack = new ItemStack(toolPart);
-        stack.getOrCreateTag().putString("Material", ExpandedTiC.materialId(material.getName()).toString());
+        stack.getOrCreateTag().putString("Material", GMConstruct.materialId(material.getName()).toString());
         return stack;
     }
 }

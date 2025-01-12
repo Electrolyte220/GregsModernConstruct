@@ -1,4 +1,4 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -12,11 +12,11 @@ public class LangGeneration {
     private static final HashMap<String, String> SPECIAL_LANG = new HashMap<>();
 
     static {
-        SPECIAL_LANG.put("material.expandedtic.hsse", "HSS-E");
+        SPECIAL_LANG.put("material.gm_construct.hsse", "HSS-E");
     }
 
     protected Pair<String, String> generateLangEntry(Material material) {
-        String materialKey = "material.expandedtic." + material.getName();
+        String materialKey = "material.gm_construct." + material.getName();
         if(SPECIAL_LANG.containsKey(materialKey)) {
             return new Pair<>(materialKey, SPECIAL_LANG.get(materialKey));
         } else {

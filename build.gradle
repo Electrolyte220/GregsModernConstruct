@@ -58,7 +58,6 @@ legacyForge {
             programArguments.addAll("--output", file("src/generated/resources/").getAbsolutePath())
             programArguments.addAll("--existing", file("src/main/resources/").getAbsolutePath())
             programArguments.addAll("--existing-mod", "tconstruct")
-            programArguments.addAll("--existing-mod", "gtceu")
         }
     }
 
@@ -116,15 +115,22 @@ repositories {
 dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
+    implementation 'org.jetbrains:annotations:24.0.0'
+
     modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim"
     modImplementation "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     modImplementation "slimeknights.tconstruct:TConstruct:${minecraft_version}-${tinkers_version}"
-    modImplementation "curse.maven:configuration-444699:${configuration_cf_version}"
 
     modRuntimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
     modRuntimeOnly "com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}"
-    }
+    modRuntimeOnly "curse.maven:configuration-444699:${configuration_cf_version}"
+}
+
+mixin {
+    add sourceSets.main, "gm_construct-refmap.json"
+    config "gm_construct.mixins.json"
+}
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [

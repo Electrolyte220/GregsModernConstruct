@@ -1,11 +1,11 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.google.common.collect.Sets;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
-import dev.electrolyte.expandedtic.ExpandedTiC;
-import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
+import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.SharedConstants;
@@ -26,17 +26,17 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class ETDynamicResourcePack implements PackResources {
+public class GMCDynamicResourcePack implements PackResources {
 
     private static final ObjectSet<String> CLIENT_DOMAINS = new ObjectOpenHashSet<>();
     private static final ConcurrentMap<ResourceLocation, byte[]> DATA = new ConcurrentHashMap<>();
     private final String name;
 
     static {
-        CLIENT_DOMAINS.addAll(Sets.newHashSet(ExpandedTiC.MOD_ID, "minecraft", "forge", "c"));
+        CLIENT_DOMAINS.addAll(Sets.newHashSet(GMConstruct.MOD_ID, "minecraft", "forge", "c"));
     }
 
-    public ETDynamicResourcePack(String name) {
+    public GMCDynamicResourcePack(String name) {
         this.name = name;
     }
 
@@ -47,13 +47,13 @@ public class ETDynamicResourcePack implements PackResources {
     public static void generateAllAssets() {
         JsonObject langObject = new JsonObject();
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
-            Pair<ResourceLocation, byte[]> data = MaterialRenderInfoGeneration.INSTANCE.generateRenderInfo(ExpandedTiC.id(material.getName()), material);
+            Pair<ResourceLocation, byte[]> data = MaterialRenderInfoGeneration.INSTANCE.generateRenderInfo(GMConstruct.id(material.getName()), material);
             DATA.put(data.getFirst(), data.getSecond());
 
             Pair<String, String> entry = LangGeneration.INSTANCE.generateLangEntry(material);
             langObject.addProperty(entry.getFirst(), entry.getSecond());
         }
-        DATA.put(new ResourceLocation(ExpandedTiC.MOD_ID, "lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
+        DATA.put(new ResourceLocation(GMConstruct.MOD_ID, "lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     @Nullable
@@ -95,7 +95,7 @@ public class ETDynamicResourcePack implements PackResources {
     @Override
     public <T> T getMetadataSection(MetadataSectionSerializer<T> metadataSectionSerializer) {
         if(metadataSectionSerializer == PackMetadataSection.TYPE) {
-            return (T) new PackMetadataSection(Component.literal("ExpandedTiC Dynamic Assets"),
+            return (T) new PackMetadataSection(Component.literal("Gregtech Material's Construct Dynamic Assets"),
                     SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
         }
         return null;

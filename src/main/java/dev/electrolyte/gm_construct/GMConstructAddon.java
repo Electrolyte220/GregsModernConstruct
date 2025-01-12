@@ -1,32 +1,32 @@
-package dev.electrolyte.expandedtic;
+package dev.electrolyte.gm_construct;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import dev.electrolyte.expandedtic.recipes.ETRecipes;
+import dev.electrolyte.gm_construct.recipes.GMCRecipes;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
 @GTAddon
-public class ExpandedTiCAddon implements IGTAddon {
+public class GMConstructAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
-        return ExpandedTiC.REGISTRATE;
+        return GMConstruct.REGISTRATE;
     }
 
     @Override
     public void initializeAddon() {
-        ExpandedTiC.LOGGER.info("Initialized ExpandedTiC GT Addon.");
+        GMConstruct.LOGGER.info("Initialized GregTech Material Construct Addon.");
     }
 
     @Override
     public String addonModId() {
-        return ExpandedTiC.MOD_ID;
+        return GMConstruct.MOD_ID;
     }
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        ETRecipes.register(provider);
+        GMCRecipes.register(provider);
     }
 }

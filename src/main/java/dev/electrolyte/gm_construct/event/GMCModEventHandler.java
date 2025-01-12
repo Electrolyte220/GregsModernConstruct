@@ -1,8 +1,8 @@
-package dev.electrolyte.expandedtic.event;
+package dev.electrolyte.gm_construct.event;
 
-import dev.electrolyte.expandedtic.ExpandedTiC;
-import dev.electrolyte.expandedtic.data.ETDynamicDataPack;
-import dev.electrolyte.expandedtic.data.ETDynamicResourcePack;
+import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.data.GMCDynamicDataPack;
+import dev.electrolyte.gm_construct.data.GMCDynamicResourcePack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
@@ -13,27 +13,27 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@Mod.EventBusSubscriber(modid = ExpandedTiC.MOD_ID, bus = Bus.MOD)
-public class ETModEventHandler {
+@Mod.EventBusSubscriber(modid = GMConstruct.MOD_ID, bus = Bus.MOD)
+public class GMCModEventHandler {
 
     @SubscribeEvent
     public static void addPacks(AddPackFindersEvent event) {
         if(event.getPackType() == PackType.SERVER_DATA) {
             event.addRepositorySource(c -> c.accept(Pack.readMetaAndCreate(
-                    "expandedtic:dynamic_data",
-                    Component.literal("expandedtic:dynamic_data"),
+                    "gm_construct:dynamic_data",
+                    Component.literal("gm_construct:dynamic_data"),
                     true,
-                    ETDynamicDataPack::new,
+                    GMCDynamicDataPack::new,
                     PackType.SERVER_DATA,
                     Position.BOTTOM,
                     PackSource.BUILT_IN)));
             }
         if(event.getPackType() == PackType.CLIENT_RESOURCES) {
             event.addRepositorySource(c -> c.accept(Pack.readMetaAndCreate(
-                    "expandedtic:dynamic_assets",
-                    Component.literal("expandedtic:dynamic_assets"),
+                    "gm_construct:dynamic_assets",
+                    Component.literal("gm_construct:dynamic_assets"),
                     true,
-                    ETDynamicResourcePack::new,
+                    GMCDynamicResourcePack::new,
                     PackType.CLIENT_RESOURCES,
                     Position.BOTTOM,
                     PackSource.BUILT_IN)));

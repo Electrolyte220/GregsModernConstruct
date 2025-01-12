@@ -1,10 +1,11 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.google.common.collect.Sets;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
-import dev.electrolyte.expandedtic.ExpandedTiC;
-import dev.electrolyte.expandedtic.helper.GTMaterialHelper;
+import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.config.GMCConfig;
+import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.SharedConstants;
@@ -20,10 +21,13 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 @ParametersAreNonnullByDefault
-public class ETDynamicDataPack implements PackResources {
+public class GMCDynamicDataPack implements PackResources {
 
     private static final ObjectSet<String> SERVER_DOMAINS = new ObjectOpenHashSet<>();
     private static final Map<ResourceLocation, byte[]> DATA = new HashMap<>();
@@ -31,10 +35,10 @@ public class ETDynamicDataPack implements PackResources {
     private String name;
 
     static {
-        SERVER_DOMAINS.addAll(Sets.newHashSet(ExpandedTiC.MOD_ID, "minecraft", "forge", "c"));
+        SERVER_DOMAINS.addAll(Sets.newHashSet(GMConstruct.MOD_ID, "minecraft", "forge", "c"));
     }
 
-    public ETDynamicDataPack(String name) {
+    public GMCDynamicDataPack(String name) {
         this.name = name;
     }
 
@@ -59,22 +63,19 @@ public class ETDynamicDataPack implements PackResources {
     }
 
     public static void generateAllMaterialData() {
-        List<String> ignoredDef = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatDefGen);
-        List<String> ignoredStats = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatStatsGen);
-        List<String> ignoredTraits = Arrays.asList(ExpandedTiC.CONFIG_INSTANCE.gtMaterialGeneration.ignoredDefaultMatTraitsGen);
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
-            Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(ExpandedTiC.materialId(material.getName()), material);
-            if(!ignoredDef.contains(material.getName())) {
+            Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(GMConstruct.materialId(material.getName()), material);
+            if(! GMCConfig.IGNORED_DEFAULT_MAT_DEFS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
 
             data = MaterialStatsGeneration.INSTANCE.generateMaterialStats(material);
-            if(!ignoredStats.contains(material.getName())) {
+            if(! GMCConfig.IGNORED_DEFAULT_MAT_STATS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
 
             data = MaterialTraitsGeneration.INSTANCE.generateMaterialTraits(material);
-            if(!ignoredTraits.contains(material.getName())) {
+            if(! GMCConfig.IGNORED_DEFAULT_MAT_TRAITS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
         }
@@ -101,7 +102,7 @@ public class ETDynamicDataPack implements PackResources {
     @Override
     public @Nullable <T> T getMetadataSection(MetadataSectionSerializer<T> pDeserializer) {
         if(pDeserializer == PackMetadataSection.TYPE) {
-            return (T) new PackMetadataSection(Component.literal("ExpandedTiC Dynamic Data"),
+            return (T) new PackMetadataSection(Component.literal("GMConstruct Dynamic Data"),
                     SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA));
         }
         return null;

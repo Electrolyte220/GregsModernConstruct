@@ -1,11 +1,11 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.mojang.datafixers.util.Pair;
-import dev.electrolyte.expandedtic.ExpandedTiC;
+import dev.electrolyte.gm_construct.GMConstruct;
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.materials.json.MaterialTraitsJson;
 import slimeknights.tconstruct.library.materials.traits.MaterialTraits;
@@ -51,6 +51,6 @@ public class MaterialTraitsGeneration {
             trait.setDefaultTraits(List.of(new ModifierEntry(entry.getFirst(), entry.getSecond())));
         }
         MaterialTraitsJson json = trait.serialize();
-        return new Pair<>(new ResourceLocation(ExpandedTiC.MOD_ID, "tinkering/materials/traits/" + material.getName() + ".json"), GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/traits/" + material.getName() + ".json"), GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 }

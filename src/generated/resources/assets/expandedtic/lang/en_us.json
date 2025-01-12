@@ -28,5 +28,7 @@
   "config.expandedtic.option.limbDrawSpeedModifier": "Global Limb Draw Speed Modifier",
   "config.expandedtic.option.limbDurabilityModifier": "Global Limb Durability Modifier",
   "config.expandedtic.option.limbModifiers": "Global Limb Modifiers",
-  "config.expandedtic.option.limbVelocityModifier": "Global Limb Velocity Modifier"
+  "config.expandedtic.option.limbVelocityModifier": "Global Limb Velocity Modifier",
+  "material.expandedtic.gravitite": "Gravitite",
+  "material.expandedtic.zanite": "Zanite"
 }

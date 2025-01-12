@@ -1,4 +1,4 @@
-package dev.electrolyte.expandedtic.data;
+package dev.electrolyte.gm_construct.data;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
@@ -20,7 +20,7 @@ import java.util.Set;
 
 //AbstractMaterialSpriteProvider$MaterialSpriteInfoBuilder
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
-public class ETMaterialSpriteInfoBuilder {
+public class GMCMaterialSpriteInfoBuilder {
 
     /** Builder for material sprite info */
         private static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -34,36 +34,36 @@ public class ETMaterialSpriteInfoBuilder {
         private ISpriteTransformer transformer;
 
         /** Sets the fallbacks */
-        public ETMaterialSpriteInfoBuilder fallbacks(String... fallbacks) {
+        public GMCMaterialSpriteInfoBuilder fallbacks(String... fallbacks) {
             this.fallbacks = fallbacks;
             return this;
         }
 
         /** Sets the transformer to a color mapping transform */
         @CanIgnoreReturnValue
-        public ETMaterialSpriteInfoBuilder colorMapper(IColorMapping mapping) {
+        public GMCMaterialSpriteInfoBuilder colorMapper(IColorMapping mapping) {
             return transformer(new RecolorSpriteTransformer(mapping));
         }
 
         /** Adds a stat type as supported */
-        public ETMaterialSpriteInfoBuilder statType(MaterialStatsId statsId) {
+        public GMCMaterialSpriteInfoBuilder statType(MaterialStatsId statsId) {
             statTypes.add(statsId);
             return this;
         }
 
         /** Adds a stat type as supported */
-        public ETMaterialSpriteInfoBuilder statType(MaterialStatsId... statsId) {
+        public GMCMaterialSpriteInfoBuilder statType(MaterialStatsId... statsId) {
             statTypes.add(statsId);
             return this;
         }
 
         /** Adds repair kits */
-        public ETMaterialSpriteInfoBuilder repairKit() {
+        public GMCMaterialSpriteInfoBuilder repairKit() {
             return statType(StatlessMaterialStats.REPAIR_KIT.getIdentifier());
         }
 
         /** Adds stat types for melee and harvest tools - head, handle and extra */
-        public ETMaterialSpriteInfoBuilder meleeHarvest() {
+        public GMCMaterialSpriteInfoBuilder meleeHarvest() {
             statType(HeadMaterialStats.ID);
             statType(HandleMaterialStats.ID);
             statType(StatlessMaterialStats.BINDING.getIdentifier());
@@ -72,7 +72,7 @@ public class ETMaterialSpriteInfoBuilder {
         }
 
         /** Adds stat types for ranged tools - includes limb and grip */
-        public ETMaterialSpriteInfoBuilder ranged() {
+        public GMCMaterialSpriteInfoBuilder ranged() {
             statType(LimbMaterialStats.ID);
             statType(GripMaterialStats.ID);
             repairKit();
@@ -80,14 +80,14 @@ public class ETMaterialSpriteInfoBuilder {
         }
 
         /** Adds stat types for maille */
-        public ETMaterialSpriteInfoBuilder maille() {
+        public GMCMaterialSpriteInfoBuilder maille() {
             statType(StatlessMaterialStats.MAILLE.getIdentifier());
             statType(TinkerPartSpriteProvider.ARMOR_MAILLE);
             return this;
         }
 
         /** Adds stat types for armor, all plating plus maille */
-        public ETMaterialSpriteInfoBuilder armor() {
+        public GMCMaterialSpriteInfoBuilder armor() {
             statType(TinkerPartSpriteProvider.ARMOR_PLATING);
             for (MaterialStatType<?> type : PlatingMaterialStats.TYPES) {
                 statType(type.getId());
@@ -98,7 +98,7 @@ public class ETMaterialSpriteInfoBuilder {
         }
 
         /** Makes this work as the wood part for a shield */
-        public ETMaterialSpriteInfoBuilder shieldCore() {
+        public GMCMaterialSpriteInfoBuilder shieldCore() {
             return statType(StatlessMaterialStats.SHIELD_CORE.getIdentifier());
         }
 
