@@ -7,7 +7,7 @@ issueTrackerURL="https://github.com/Electrolyte220/GregsMaterialConstruct/issues
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/gregs-material-construct/"
 authors="${mod_authors}"
 description='''${mod_description}'''
 

@@ -15,6 +15,7 @@ public class GMCConfig {
 
     public static ForgeConfigSpec COMMON_CONFIG;
 
+    public static BooleanValue GENERATE_CASTING_RECIPES;
     public static BooleanValue GENERATE_EXTRUDER_RECIPES;
     public static BooleanValue GENERATE_FLUID_SOLIDIFICATION_RECIPES;
 
@@ -43,7 +44,8 @@ public class GMCConfig {
 
     static {
         Builder COMMON_BUILDER = new Builder();
-        COMMON_BUILDER.comment("Configuration related to material recipe generation").push("GT Recipe Integration").worldRestart();
+        COMMON_BUILDER.comment("Configuration related to material recipe generation").push("Recipe Integration").worldRestart();
+        GENERATE_CASTING_RECIPES = COMMON_BUILDER.define("generateCastingRecipes", false);
         GENERATE_EXTRUDER_RECIPES = COMMON_BUILDER.define("generateExtruderRecipes", true);
         GENERATE_FLUID_SOLIDIFICATION_RECIPES = COMMON_BUILDER.define("generateFluidSolidificationRecipes", false);
         COMMON_BUILDER.pop();
