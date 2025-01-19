@@ -20,7 +20,7 @@ import java.util.Set;
 
 //AbstractMaterialSpriteProvider$MaterialSpriteInfoBuilder
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
-public class GMCMaterialSpriteInfoBuilder {
+public class MaterialSpriteInfoBuilder {
 
     /** Builder for material sprite info */
         private static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -34,36 +34,36 @@ public class GMCMaterialSpriteInfoBuilder {
         private ISpriteTransformer transformer;
 
         /** Sets the fallbacks */
-        public GMCMaterialSpriteInfoBuilder fallbacks(String... fallbacks) {
+        public MaterialSpriteInfoBuilder fallbacks(String... fallbacks) {
             this.fallbacks = fallbacks;
             return this;
         }
 
         /** Sets the transformer to a color mapping transform */
         @CanIgnoreReturnValue
-        public GMCMaterialSpriteInfoBuilder colorMapper(IColorMapping mapping) {
+        public MaterialSpriteInfoBuilder colorMapper(IColorMapping mapping) {
             return transformer(new RecolorSpriteTransformer(mapping));
         }
 
         /** Adds a stat type as supported */
-        public GMCMaterialSpriteInfoBuilder statType(MaterialStatsId statsId) {
+        public MaterialSpriteInfoBuilder statType(MaterialStatsId statsId) {
             statTypes.add(statsId);
             return this;
         }
 
         /** Adds a stat type as supported */
-        public GMCMaterialSpriteInfoBuilder statType(MaterialStatsId... statsId) {
+        public MaterialSpriteInfoBuilder statType(MaterialStatsId... statsId) {
             statTypes.add(statsId);
             return this;
         }
 
         /** Adds repair kits */
-        public GMCMaterialSpriteInfoBuilder repairKit() {
+        public MaterialSpriteInfoBuilder repairKit() {
             return statType(StatlessMaterialStats.REPAIR_KIT.getIdentifier());
         }
 
         /** Adds stat types for melee and harvest tools - head, handle and extra */
-        public GMCMaterialSpriteInfoBuilder meleeHarvest() {
+        public MaterialSpriteInfoBuilder meleeHarvest() {
             statType(HeadMaterialStats.ID);
             statType(HandleMaterialStats.ID);
             statType(StatlessMaterialStats.BINDING.getIdentifier());
@@ -72,7 +72,7 @@ public class GMCMaterialSpriteInfoBuilder {
         }
 
         /** Adds stat types for ranged tools - includes limb and grip */
-        public GMCMaterialSpriteInfoBuilder ranged() {
+        public MaterialSpriteInfoBuilder ranged() {
             statType(LimbMaterialStats.ID);
             statType(GripMaterialStats.ID);
             repairKit();
@@ -80,14 +80,14 @@ public class GMCMaterialSpriteInfoBuilder {
         }
 
         /** Adds stat types for maille */
-        public GMCMaterialSpriteInfoBuilder maille() {
+        public MaterialSpriteInfoBuilder maille() {
             statType(StatlessMaterialStats.MAILLE.getIdentifier());
             statType(TinkerPartSpriteProvider.ARMOR_MAILLE);
             return this;
         }
 
         /** Adds stat types for armor, all plating plus maille */
-        public GMCMaterialSpriteInfoBuilder armor() {
+        public MaterialSpriteInfoBuilder armor() {
             statType(TinkerPartSpriteProvider.ARMOR_PLATING);
             for (MaterialStatType<?> type : PlatingMaterialStats.TYPES) {
                 statType(type.getId());
@@ -98,7 +98,7 @@ public class GMCMaterialSpriteInfoBuilder {
         }
 
         /** Makes this work as the wood part for a shield */
-        public GMCMaterialSpriteInfoBuilder shieldCore() {
+        public MaterialSpriteInfoBuilder shieldCore() {
             return statType(StatlessMaterialStats.SHIELD_CORE.getIdentifier());
         }
 

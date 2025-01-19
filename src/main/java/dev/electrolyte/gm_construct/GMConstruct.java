@@ -4,9 +4,12 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.mojang.logging.LogUtils;
 import dev.electrolyte.gm_construct.config.GMCConfig;
 import dev.electrolyte.gm_construct.data.GMCDynamicResourcePack;
+import dev.electrolyte.gm_construct.datagen.MaterialDataProvider;
+import dev.electrolyte.gm_construct.datagen.MaterialFluidTooltipProvider;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -27,6 +30,7 @@ public class GMConstruct {
         ModLoadingContext.get().registerConfig(Type.COMMON, GMCConfig.COMMON_CONFIG);
         REGISTRATE.registerRegistrate();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupMaterials);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
     }
 
     public static ResourceLocation id(String location) {
@@ -42,5 +46,11 @@ public class GMConstruct {
             GTMaterialHelper.REGISTERED_TOOL_MATERIALS = GTMaterialHelper.getRegisteredMaterials();
             GMCDynamicResourcePack.generateAllAssets();
         });
+    }
+
+    private void gatherData(GatherDataEvent event) {
+        event.getGenerator().addProvider(event.includeServer(), new MaterialDataProvider(event.getGenerator().getPackOutput()));
+
+        event.getGenerator().addProvider(event.includeClient(), new MaterialFluidTooltipProvider(event.getGenerator().getPackOutput()));
     }
 }

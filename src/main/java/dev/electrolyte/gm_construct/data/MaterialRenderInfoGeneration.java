@@ -27,7 +27,7 @@ public class MaterialRenderInfoGeneration {
 
     private RenderInfoBuilder getBuilder(ResourceLocation texture, Material material) {
         RenderInfoBuilder builder = new RenderInfoBuilder();
-        MaterialSpriteInfo spriteInfo = new GMCMaterialSpriteInfoBuilder(texture)
+        MaterialSpriteInfo spriteInfo = new MaterialSpriteInfoBuilder(texture)
                 .meleeHarvest().ranged().fallbacks("metal")
                 .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, material.getMaterialARGB()).build()).build();
         if (spriteInfo != null) {

@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
-issueTrackerURL="https://github.com/Electrolyte220/GregsMaterialConstruct/issues"
+issueTrackerURL="https://github.com/Electrolyte220/GregsModernConstruct/issues"
 
 [[mods]]
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/gregs-material-construct/"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/gregs-modern-construct/"
 authors="${mod_authors}"
 description='''${mod_description}'''
 
