@@ -52,9 +52,8 @@ public class GMCConfig {
 
         COMMON_BUILDER.comment("Configuration related to material modification.").push("Material Modification");
         IGNORED_GT_MATERIALS = COMMON_BUILDER.comment("Disable generating tinker's material information for the following GT materials.").define("ignoredGTMaterials", Lists.newArrayList(
-                "bronze", "cobalt", "copper", "diamond", "flint", "invar", "iron", "netherite", "polybenzimidazole",
-                "polyethylene", "polytetrafluoroethylene", "rose_gold", "rubber", "steel", "silicone_rubber",
-                "styrene_butadiene_rubber", "wood"));
+                "cobalt", "copper", "diamond", "flint", "netherite", "polybenzimidazole", "polyethylene",
+                "polytetrafluoroethylene", "rubber", "silicone_rubber", "styrene_butadiene_rubber", "wood"));
         IGNORED_DEFAULT_MAT_DEFS = COMMON_BUILDER.comment("Disable generating default material definitions for the following GT materials.").define("ignoredGTMatDefs", Lists.newArrayList());
         IGNORED_DEFAULT_MAT_STATS = COMMON_BUILDER.comment("Disable generating default material stats for the following GT materials.", "Any materials in this list will also ignore global modifiers.").define("ignoredGTMatStats", Lists.newArrayList());
         IGNORED_DEFAULT_MAT_TRAITS = COMMON_BUILDER.comment("Disable generating default material traits for the following GT materials.").define("ignoredGTMatTraits", Lists.newArrayList());
