@@ -30,24 +30,24 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
 
     public void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
-            metalMaterialRecipe(provider, GMConstruct.materialId(material.getName()), "tools/materials/", material.getName(), false);
+            metalMaterialRecipe(provider, GMConstruct.materialId(material.getName()), "tools/materials/", material.getName(), false); //repairing via material nugget/ingot/block in tool station
 
             if(GMCConfig.GENERATE_CASTING_RECIPES.get()) {
-                MaterialMeltingRecipeBuilder.material(GMConstruct.materialId(material.getName()), material.getFluid(), FluidValues.INGOT)
-                        .save(provider, location("tools/materials/melting/" + material.getName()));
+                MaterialMeltingRecipeBuilder.material(GMConstruct.materialId(material.getName()), material.getFluid().getFluidType().getTemperature() - 300, new FluidStack(material.getFluid(), FluidValues.INGOT))//todo: check temp
+                        .save(provider, location("tools/materials/melting/" + material.getName())); //melting recipes for tool parts
+
+                metalMelting(provider, material.getFluid(), material.getName(), material.hasProperty(PropertyKey.ORE), material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", false); //melting recipes for material ingot, gear, wire, etc. to fluid
 
                 MaterialFluidRecipeBuilder.material(GMConstruct.materialId(material.getName()))
                         .setFluid(material.getFluidTag(), FluidValues.INGOT)
-                        .setTemperature(material.getFluid().getFluidType().getTemperature())
-                        .save(provider, location("tools/materials/casting/" + material.getName()));
+                        .setTemperature(material.getFluid().getFluidType().getTemperature() - 300)
+                        .save(provider, location("tools/materials/casting/" + material.getName())); //casting recipes for material tool parts
 
-                metalMelting(provider, material.getFluid(), material.getName(), material.hasProperty(PropertyKey.ORE), material.hasProperty(PropertyKey.DUST), "metal/melting/", false);
                 metalCasting(provider, material.getFluid(),
                         ItemOutput.fromTag(getItemTag(COMMON, "storage_blocks/" + material.getName())),
                         ItemOutput.fromTag(getItemTag(COMMON, "ingots/" + material.getName())),
                         ItemOutput.fromTag(getItemTag(COMMON, "nuggets/" + material.getName())),
-                        "metal/casting/",
-                        material.getName());
+                        "smeltery/casting/metal/", material.getName()); //casting recipes for material blocks, ingots & nuggets ONLY.
 
             }
         }

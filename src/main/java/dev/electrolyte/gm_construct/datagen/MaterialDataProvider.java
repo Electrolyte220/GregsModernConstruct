@@ -19,6 +19,7 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
         addRedirect(new MaterialId(TConstruct.MOD_ID, "iron"), redirect(GMConstruct.materialId("iron")));
         addRedirect(new MaterialId(TConstruct.MOD_ID, "steel"), redirect(GMConstruct.materialId("steel")));
         addRedirect(new MaterialId(TConstruct.MOD_ID, "tungsten"), redirect(GMConstruct.materialId("tungsten")));
+        addRedirect(new MaterialId(TConstruct.MOD_ID, "osmium"), redirect(GMConstruct.materialId("osmium")));
     }
 
     @Override
