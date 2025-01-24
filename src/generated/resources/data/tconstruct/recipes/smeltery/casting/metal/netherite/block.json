@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 279,
+  "fluid": {
+    "amount": 1296,
+    "tag": "forge:molten_netherite"
+  },
+  "result": "minecraft:netherite_block"
+}

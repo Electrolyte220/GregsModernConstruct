@@ -1,0 +1,20 @@
+{
+  "type": "tconstruct:casting_basin",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:storage_blocks/uranium"
+      }
+    }
+  ],
+  "cooling_time": 232,
+  "fluid": {
+    "amount": 1296,
+    "tag": "forge:molten_uranium"
+  },
+  "result": {
+    "tag": "forge:storage_blocks/uranium"
+  }
+}

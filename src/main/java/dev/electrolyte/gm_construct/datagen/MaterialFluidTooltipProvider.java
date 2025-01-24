@@ -4,10 +4,9 @@ import dev.electrolyte.gm_construct.GMConstruct;
 import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.fluid.tooltip.AbstractFluidTooltipProvider;
 import slimeknights.tconstruct.TConstruct;
-
-import static slimeknights.tconstruct.common.TinkerTags.Fluids.METAL_TOOLTIPS;
 
 public class MaterialFluidTooltipProvider extends AbstractFluidTooltipProvider {
     public MaterialFluidTooltipProvider(PackOutput output) {
@@ -16,7 +15,7 @@ public class MaterialFluidTooltipProvider extends AbstractFluidTooltipProvider {
 
     @Override
     protected void addFluids() {
-        add("metal", METAL_TOOLTIPS)
+        add("metal", ForgeRegistries.FLUIDS.tags().createTagKey(GMConstruct.id("tooltips/metal")))
                 .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.block")), 1296)
                 .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.ingot")), 144)
                 .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.nugget")), 16);

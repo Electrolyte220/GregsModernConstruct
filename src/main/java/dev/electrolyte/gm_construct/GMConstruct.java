@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.mojang.logging.LogUtils;
 import dev.electrolyte.gm_construct.config.GMCConfig;
 import dev.electrolyte.gm_construct.data.GMCDynamicResourcePack;
+import dev.electrolyte.gm_construct.datagen.GMCMaterialRecipeProvider;
 import dev.electrolyte.gm_construct.datagen.MaterialDataProvider;
 import dev.electrolyte.gm_construct.datagen.MaterialFluidTooltipProvider;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
@@ -50,6 +51,7 @@ public class GMConstruct {
 
     private void gatherData(GatherDataEvent event) {
         event.getGenerator().addProvider(event.includeServer(), new MaterialDataProvider(event.getGenerator().getPackOutput()));
+        event.getGenerator().addProvider(event.includeServer(), new GMCMaterialRecipeProvider(event.getGenerator().getPackOutput()));
 
         event.getGenerator().addProvider(event.includeClient(), new MaterialFluidTooltipProvider(event.getGenerator().getPackOutput()));
     }

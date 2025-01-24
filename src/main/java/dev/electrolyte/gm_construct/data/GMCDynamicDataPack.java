@@ -65,20 +65,23 @@ public class GMCDynamicDataPack implements PackResources {
     public static void generateAllMaterialData() {
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(GMConstruct.materialId(material.getName()), material);
-            if(! GMCConfig.IGNORED_DEFAULT_MAT_DEFS.get().contains(material.getName())) {
+            if(!GMCConfig.IGNORED_DEFAULT_MAT_DEFS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
 
             data = MaterialStatsGeneration.INSTANCE.generateMaterialStats(material);
-            if(! GMCConfig.IGNORED_DEFAULT_MAT_STATS.get().contains(material.getName())) {
+            if(!GMCConfig.IGNORED_DEFAULT_MAT_STATS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
 
             data = MaterialTraitsGeneration.INSTANCE.generateMaterialTraits(material);
-            if(! GMCConfig.IGNORED_DEFAULT_MAT_TRAITS.get().contains(material.getName())) {
+            if(!GMCConfig.IGNORED_DEFAULT_MAT_TRAITS.get().contains(material.getName())) {
                 DATA.put(data.getFirst(), data.getSecond());
             }
         }
+
+        Pair<ResourceLocation, byte[]> data = FluidTooltipGeneration.INSTANCE.generateMaterialFluidTooltips();
+        DATA.put(data.getFirst(), data.getSecond());
     }
 
     @Override

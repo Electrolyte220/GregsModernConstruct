@@ -1,5 +1,5 @@
 {
-  "tag": "tconstruct:tooltips/metal",
+  "tag": "gm_construct:tooltips/metal",
   "units": [
     {
       "key": "gui.tconstruct.fluid.block",
