@@ -35,7 +35,7 @@ public abstract class TankItemMixin extends BlockTooltipItem {
         super(blockIn, builder);
     }
 
-    @Inject(method = "appendHoverText", at = @At("HEAD"), remap = false, cancellable = true)
+    @Inject(method = "appendHoverText", at = @At("HEAD"), cancellable = true)
     private void gmc$appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn, CallbackInfo ci) {
         if (stack.hasTag()) {
             FluidTank tank = getFluidTank(stack);
@@ -58,11 +58,10 @@ public abstract class TankItemMixin extends BlockTooltipItem {
                     }
                 }
             }
-            ci.cancel();
-            return;
         }
         else {
             super.appendHoverText(stack, worldIn, tooltip, flagIn);
         }
+        ci.cancel();
     }
 }

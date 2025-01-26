@@ -69,6 +69,7 @@ import static slimeknights.mantle.Mantle.COMMON;
 import static slimeknights.mantle.Mantle.commonResource;
 import static slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe.getTemperature;
 
+//Changes smeltery metal recipes to use 144mb to represent 1 ingot of fluid, to match GT.
 public class GMCMaterialRecipeProvider extends RecipeProvider implements IMaterialRecipeHelper, IConditionBuilder, IRecipeHelper, ICastCreationHelper, ISmelteryRecipeHelper {
     public GMCMaterialRecipeProvider(PackOutput packOutput) {
         super(packOutput);
