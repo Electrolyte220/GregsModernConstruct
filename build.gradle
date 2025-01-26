@@ -3,8 +3,6 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.moddev.legacyforge' version '2.0.73'
     id 'io.freefair.lombok' version '8.6'
-    //id 'org.spongepowered.mixin' version '0.7.+'
-    //id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
 version = mod_version
@@ -158,7 +156,8 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs': 'gm_construct.mixins.json'
         ])
     }
 
