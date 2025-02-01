@@ -9,6 +9,7 @@ import dev.electrolyte.gm_construct.datagen.MaterialDataProvider;
 import dev.electrolyte.gm_construct.datagen.MaterialFluidTooltipProvider;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
@@ -45,7 +47,9 @@ public class GMConstruct {
     private void setupMaterials(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             GTMaterialHelper.REGISTERED_TOOL_MATERIALS = GTMaterialHelper.getRegisteredMaterials();
-            GMCDynamicResourcePack.generateAllAssets();
+            if(FMLLoader.getDist() != Dist.DEDICATED_SERVER) {
+                GMCDynamicResourcePack.generateAllAssets();
+            }
         });
     }
 
