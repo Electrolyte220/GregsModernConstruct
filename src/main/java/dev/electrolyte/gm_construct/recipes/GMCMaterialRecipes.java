@@ -1,5 +1,6 @@
 package dev.electrolyte.gm_construct.recipes;
 
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import dev.electrolyte.gm_construct.GMConstruct;
@@ -35,6 +36,14 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
     }
 
     public void register(Consumer<FinishedRecipe> provider) {
+        for(Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
+            if(!material.hasProperty(PropertyKey.ORE)) continue;
+            Material smeltsIntoMaterial = material.getProperty(PropertyKey.ORE).getDirectSmeltResult();
+            if(smeltsIntoMaterial == null) continue;
+            if(material.getName().equals(smeltsIntoMaterial.getName())) continue;
+            metalMelting(provider, smeltsIntoMaterial.getFluid(), material.getName(), true, material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", false);
+        }
+
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
             MaterialId materialId = GMConstruct.materialId(material.getName());
             metalMaterialRecipe(provider, materialId, "tools/materials/", material.getName(), false); //repairing via material nugget/ingot/block in tool station
