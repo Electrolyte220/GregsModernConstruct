@@ -7,11 +7,15 @@ import dev.electrolyte.gm_construct.GMConstruct;
 import dev.electrolyte.gm_construct.config.GMCConfig;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.recipe.helper.FluidOutput;
 import slimeknights.mantle.recipe.helper.ItemOutput;
+import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.registration.CastItemObject;
 import slimeknights.tconstruct.library.data.recipe.IByproduct;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
@@ -41,7 +45,7 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
             Material smeltsIntoMaterial = material.getProperty(PropertyKey.ORE).getDirectSmeltResult();
             if(smeltsIntoMaterial == null) continue;
             if(material.getName().equals(smeltsIntoMaterial.getName())) continue;
-            metalMelting(provider, smeltsIntoMaterial.getFluid(), material.getName(), true, material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", false);
+            metalMeltingTag(provider, smeltsIntoMaterial.getFluidTag(), smeltsIntoMaterial.getFluid(), material.getName(), true, material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", true);
         }
 
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
@@ -52,7 +56,7 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
                 MaterialMeltingRecipeBuilder.material(materialId, material.getFluid().getFluidType().getTemperature() - 300, new FluidStack(material.getFluid(), 144))//todo: check temp
                         .save(provider, location("tools/materials/melting/" + material.getName())); //melting recipes for tool parts
 
-                metalMelting(provider, material.getFluid(), material.getName(), material.hasProperty(PropertyKey.ORE), material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", false); //melting recipes for material ingot, gear, wire, etc. to fluid
+                metalMeltingTag(provider, material.getFluidTag(), material.getFluid(), material.getName(), material.hasProperty(PropertyKey.ORE), material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", false); //melting recipes for material ingot, gear, wire, etc. to fluid
 
                 MaterialFluidRecipeBuilder.material(materialId)
                         .setFluid(material.getFluidTag(), 144)
@@ -67,10 +71,17 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
             }
         }
     }
-
-    @Override
-    public void metalMelting(Consumer<FinishedRecipe> consumer, Fluid fluid, String name, boolean hasOre, boolean hasDust, String folder, boolean isOptional, IByproduct... byproducts) {
-        metalMelting(consumer, size -> FluidOutput.fromFluid(fluid, size), getTemperature(fluid), name, hasOre, hasDust, folder, isOptional, byproducts);
+    public void metalMeltingTag(Consumer<FinishedRecipe> consumer, TagKey<Fluid> fluidTag, Fluid fluid, String name, boolean hasOre, boolean hasDust, String folder, boolean isOptional, IByproduct... byproducts) {
+        ResourceLocation tagLoc = fluidTag.location();
+        String fluidName = tagLoc.getPath();
+        Fluid output;
+        ResourceLocation fluidLoc = new ResourceLocation(TConstruct.MOD_ID, "molten_" + fluidName);
+        if(ForgeRegistries.FLUIDS.containsKey(fluidLoc)) {
+            output = ForgeRegistries.FLUIDS.getValue(fluidLoc);
+        } else {
+            output = fluid;
+        }
+        metalMelting(consumer, size -> FluidOutput.fromFluid(output, size), getTemperature(fluid), name, hasOre, hasDust, folder, isOptional, byproducts);
     }
 
     private void metalMelting(Consumer<FinishedRecipe> consumer, IntFunction<FluidOutput> fluid, int temperature, String name, boolean hasOre, boolean hasDust, String folder, boolean isOptional, IByproduct... byproducts) {
