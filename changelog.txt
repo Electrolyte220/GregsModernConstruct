@@ -1,1 +1,7 @@
-- 1.0.1 Fix crash on dedicated servers
+- 1.0.2
+- Fix certain melting recipes not having the correct amount of fluid
+- Allow GT ores that smelt into different ingots to be melted in the smeltery/foundry
+- Prefer tinker's fluids over GT fluids in the smeltery/foundry
+
+- 1.0.1
+- Fix crash on dedicated servers
