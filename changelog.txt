@@ -1,3 +1,7 @@
+- 1.0.3
+- Fix fluid tooltip sometimes not loading
+- Fix crash with materials without fluids
+
 - 1.0.2
 - Fix certain melting recipes not having the correct amount of fluid
 - Allow GT ores that smelt into different ingots to be melted in the smeltery/foundry
