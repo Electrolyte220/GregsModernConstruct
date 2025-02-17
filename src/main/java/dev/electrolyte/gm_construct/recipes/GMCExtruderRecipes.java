@@ -53,6 +53,10 @@ public class GMCExtruderRecipes {
             }
 
             if(GMCConfig.GENERATE_FLUID_SOLIDIFICATION_RECIPES.get()) {
+                if(!inputMaterial.material.hasProperty(PropertyKey.FLUID)) {
+                    GMConstruct.LOGGER.warn("Material {} does not have a fluid, no solidification recipes will be added for this material.", inputMaterial.material);
+                    return;
+                }
                 generateSolidifierRecipes(inputMaterial, TinkerToolParts.repairKit, 2, TinkerSmeltery.repairKitCast, "repair_kit", provider);
 
                 generateSolidifierRecipes(inputMaterial, TinkerToolParts.pickHead, 2, TinkerSmeltery.pickHeadCast, "pick_head", provider);

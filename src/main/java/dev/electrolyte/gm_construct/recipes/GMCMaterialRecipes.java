@@ -42,13 +42,19 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
     public void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
             if(!material.hasProperty(PropertyKey.ORE)) continue;
+            if(!material.hasProperty(PropertyKey.FLUID)) continue;
             Material smeltsIntoMaterial = material.getProperty(PropertyKey.ORE).getDirectSmeltResult();
             if(smeltsIntoMaterial == null) continue;
             if(material.getName().equals(smeltsIntoMaterial.getName())) continue;
+            if(!smeltsIntoMaterial.hasProperty(PropertyKey.FLUID)) continue;
             metalMeltingTag(provider, smeltsIntoMaterial.getFluidTag(), smeltsIntoMaterial.getFluid(), material.getName(), true, material.hasProperty(PropertyKey.DUST), "smeltery/melting/metal", true);
         }
 
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
+            if(!material.hasProperty(PropertyKey.FLUID)) {
+                GMConstruct.LOGGER.warn("Material {} does not have a fluid, no solidification recipes will be added for this material.", material);
+                continue;
+            }
             MaterialId materialId = GMConstruct.materialId(material.getName());
             metalMaterialRecipe(provider, materialId, "tools/materials/", material.getName(), false); //repairing via material nugget/ingot/block in tool station
 
@@ -81,7 +87,7 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
         } else {
             output = fluid;
         }
-        metalMelting(consumer, size -> FluidOutput.fromFluid(output, size), getTemperature(fluid), name, hasOre, hasDust, folder, isOptional, byproducts);
+        metalMelting(consumer, size -> FluidOutput.fromFluid(output, size), getTemperature(output), name, hasOre, hasDust, folder, isOptional, byproducts);
     }
 
     private void metalMelting(Consumer<FinishedRecipe> consumer, IntFunction<FluidOutput> fluid, int temperature, String name, boolean hasOre, boolean hasDust, String folder, boolean isOptional, IByproduct... byproducts) {
