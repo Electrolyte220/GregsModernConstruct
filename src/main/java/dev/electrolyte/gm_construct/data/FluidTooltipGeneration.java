@@ -20,7 +20,10 @@ public class FluidTooltipGeneration {
         JsonArray tagValues = new JsonArray();
         tagValues.add("#tconstruct:tooltips/metal");
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
-            tagValues.add("#" + material.getFluidTag().location());
+            JsonObject materialObj = new JsonObject();
+            materialObj.addProperty("required", false);
+            materialObj.addProperty("id", "#" + material.getFluidTag().location());
+            tagValues.add(materialObj);
         }
         tagObj.add("values", tagValues);
         return new Pair<>(GMConstruct.id("tags/fluids/tooltips/metal.json"), tagObj.toString().getBytes(StandardCharsets.UTF_8));
