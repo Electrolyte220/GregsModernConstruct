@@ -42,7 +42,6 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
     public void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
             if(!material.hasProperty(PropertyKey.ORE)) continue;
-            if(!material.hasProperty(PropertyKey.FLUID)) continue;
             Material smeltsIntoMaterial = material.getProperty(PropertyKey.ORE).getDirectSmeltResult();
             if(smeltsIntoMaterial == null) continue;
             if(material.getName().equals(smeltsIntoMaterial.getName())) continue;
