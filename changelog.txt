@@ -1,3 +1,6 @@
+- 1.0.4
+- Update to new Tinker's & GT versions
+
 - 1.0.3
 - Fix fluid tooltip sometimes not loading
 - Fix crash with materials without fluids
