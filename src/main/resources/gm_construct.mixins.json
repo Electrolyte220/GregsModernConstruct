@@ -4,9 +4,7 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ByproductMixin",
-    "SmelteryCompatMixin",
-    "TankItemMixin"
+    "SmelteryRecipeBuilderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

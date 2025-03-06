@@ -2,19 +2,16 @@
   "type": "tconstruct:ore_melting",
   "byproducts": [
     {
-      "amount": 288,
-      "tag": "forge:molten_iron"
+      "amount": 50,
+      "fluid": "tconstruct:molten_diamond",
+      "rate": "gem"
     }
   ],
   "conditions": [
     {
-      "type": "tconstruct:tag_difference_present",
-      "base": "forge:ores/cobalt",
-      "registry": "minecraft:item",
-      "subtracted": [
-        "forge:ore_rates/sparse",
-        "forge:ore_rates/dense"
-      ]
+      "type": "mantle:tag_combination_filled",
+      "ignore": "tconstruct:non_singular_ore_rates",
+      "match": "forge:ores/cobalt"
     }
   ],
   "ingredient": {
@@ -22,14 +19,9 @@
     "base": {
       "tag": "forge:ores/cobalt"
     },
-    "subtracted": [
-      {
-        "tag": "forge:ore_rates/sparse"
-      },
-      {
-        "tag": "forge:ore_rates/dense"
-      }
-    ]
+    "subtracted": {
+      "tag": "tconstruct:non_singular_ore_rates"
+    }
   },
   "rate": "metal",
   "result": {

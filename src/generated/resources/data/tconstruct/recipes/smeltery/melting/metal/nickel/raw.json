@@ -2,29 +2,24 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:raw_materials/nickel"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:raw_materials/nickel"
     }
   ],
   "recipes": [
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/gmc_platinum"
-          }
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/platinum"
         }
       ],
       "recipe": {
         "type": "tconstruct:ore_melting",
         "byproducts": [
           {
-            "amount": 30,
+            "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_platinum"
           }
         ],
@@ -51,6 +46,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_iron"
           }
         ],

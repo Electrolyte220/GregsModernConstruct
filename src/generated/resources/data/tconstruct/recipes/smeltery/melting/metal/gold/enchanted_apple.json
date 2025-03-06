@@ -4,9 +4,9 @@
     "item": "minecraft:enchanted_golden_apple"
   },
   "result": {
-    "amount": 10368,
+    "amount": 6480,
     "tag": "forge:molten_gold"
   },
   "temperature": 700,
-  "time": 611
+  "time": 483
 }

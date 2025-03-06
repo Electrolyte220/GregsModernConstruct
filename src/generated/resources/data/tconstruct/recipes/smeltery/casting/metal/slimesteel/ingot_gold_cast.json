@@ -8,5 +8,7 @@
     "amount": 144,
     "tag": "tconstruct:molten_slimesteel"
   },
-  "result": "tconstruct:slimesteel_ingot"
+  "result": {
+    "tag": "forge:ingots/slimesteel"
+  }
 }

@@ -2,9 +2,8 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "tconstruct:tag_intersection_present",
-      "registry": "minecraft:item",
-      "tags": [
+      "type": "mantle:tag_combination_filled",
+      "match": [
         "forge:ores/nickel",
         "forge:ore_rates/sparse"
       ]
@@ -14,18 +13,16 @@
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/gmc_platinum"
-          }
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/platinum"
         }
       ],
       "recipe": {
         "type": "tconstruct:ore_melting",
         "byproducts": [
           {
-            "amount": 30,
+            "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_platinum"
           }
         ],
@@ -60,6 +57,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_iron"
           }
         ],

@@ -5,14 +5,11 @@
   },
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:coins/signalum"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:coins/signalum"
     }
   ],
-  "cooling_time": 51,
+  "cooling_time": 48,
   "fluid": {
     "amount": 48,
     "tag": "forge:molten_signalum"

@@ -5,5 +5,7 @@
     "amount": 1296,
     "tag": "forge:molten_copper"
   },
-  "result": "minecraft:copper_block"
+  "result": {
+    "tag": "forge:storage_blocks/copper"
+  }
 }

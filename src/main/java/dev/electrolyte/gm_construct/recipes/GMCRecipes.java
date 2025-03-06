@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 public class GMCRecipes {
 
     public static void register(Consumer<FinishedRecipe> provider) {
-        GMCExtruderRecipes.register(provider);
+        GMCMaterialMachineRecipes.register(provider);
         new GMCMaterialRecipes(provider);
     }
 }

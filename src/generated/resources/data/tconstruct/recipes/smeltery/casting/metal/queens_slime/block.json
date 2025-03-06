@@ -5,5 +5,7 @@
     "amount": 1296,
     "tag": "tconstruct:molten_queens_slime"
   },
-  "result": "tconstruct:queens_slime_block"
+  "result": {
+    "tag": "forge:storage_blocks/queens_slime"
+  }
 }

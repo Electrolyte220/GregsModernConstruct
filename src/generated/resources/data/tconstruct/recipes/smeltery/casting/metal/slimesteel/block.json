@@ -5,5 +5,7 @@
     "amount": 1296,
     "tag": "tconstruct:molten_slimesteel"
   },
-  "result": "tconstruct:slimesteel_block"
+  "result": {
+    "tag": "forge:storage_blocks/slimesteel"
+  }
 }

@@ -5,14 +5,11 @@
   },
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:ingots/signalum"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:ingots/signalum"
     }
   ],
-  "cooling_time": 89,
+  "cooling_time": 84,
   "fluid": {
     "amount": 144,
     "tag": "forge:molten_signalum"

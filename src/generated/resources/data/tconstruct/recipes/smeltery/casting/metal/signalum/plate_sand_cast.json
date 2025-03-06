@@ -6,14 +6,11 @@
   "cast_consumed": true,
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:plates/signalum"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:plates/signalum"
     }
   ],
-  "cooling_time": 89,
+  "cooling_time": 84,
   "fluid": {
     "amount": 144,
     "tag": "forge:molten_signalum"

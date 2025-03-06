@@ -2,22 +2,16 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:raw_materials/uranium"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:raw_materials/uranium"
     }
   ],
   "recipes": [
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/gmc_lead"
-          }
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/lead"
         }
       ],
       "recipe": {
@@ -25,6 +19,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_lead"
           }
         ],
@@ -51,6 +46,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_copper"
           }
         ],

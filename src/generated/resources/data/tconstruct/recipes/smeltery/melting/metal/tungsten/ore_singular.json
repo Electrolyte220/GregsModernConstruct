@@ -2,31 +2,25 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "tconstruct:tag_difference_present",
-      "base": "forge:ores/tungsten",
-      "registry": "minecraft:item",
-      "subtracted": [
-        "forge:ore_rates/sparse",
-        "forge:ore_rates/dense"
-      ]
+      "type": "mantle:tag_combination_filled",
+      "ignore": "tconstruct:non_singular_ore_rates",
+      "match": "forge:ores/tungsten"
     }
   ],
   "recipes": [
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/gmc_platinum"
-          }
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/platinum"
         }
       ],
       "recipe": {
         "type": "tconstruct:ore_melting",
         "byproducts": [
           {
-            "amount": 60,
+            "amount": 288,
+            "rate": "metal",
             "tag": "forge:molten_platinum"
           }
         ],
@@ -35,14 +29,9 @@
           "base": {
             "tag": "forge:ores/tungsten"
           },
-          "subtracted": [
-            {
-              "tag": "forge:ore_rates/sparse"
-            },
-            {
-              "tag": "forge:ore_rates/dense"
-            }
-          ]
+          "subtracted": {
+            "tag": "tconstruct:non_singular_ore_rates"
+          }
         },
         "rate": "metal",
         "result": {
@@ -64,6 +53,7 @@
         "byproducts": [
           {
             "amount": 288,
+            "rate": "metal",
             "tag": "forge:molten_gold"
           }
         ],
@@ -72,14 +62,9 @@
           "base": {
             "tag": "forge:ores/tungsten"
           },
-          "subtracted": [
-            {
-              "tag": "forge:ore_rates/sparse"
-            },
-            {
-              "tag": "forge:ore_rates/dense"
-            }
-          ]
+          "subtracted": {
+            "tag": "tconstruct:non_singular_ore_rates"
+          }
         },
         "rate": "metal",
         "result": {

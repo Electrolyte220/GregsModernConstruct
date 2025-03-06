@@ -2,22 +2,16 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:raw_materials/lead"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:raw_materials/lead"
     }
   ],
   "recipes": [
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/gmc_silver"
-          }
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/silver"
         }
       ],
       "recipe": {
@@ -25,6 +19,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_silver"
           }
         ],
@@ -51,6 +46,7 @@
         "byproducts": [
           {
             "amount": 144,
+            "rate": "metal",
             "tag": "forge:molten_gold"
           }
         ],

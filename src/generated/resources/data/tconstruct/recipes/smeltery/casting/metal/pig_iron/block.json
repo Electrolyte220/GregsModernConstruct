@@ -5,5 +5,7 @@
     "amount": 1296,
     "tag": "tconstruct:molten_pig_iron"
   },
-  "result": "tconstruct:pig_iron_block"
+  "result": {
+    "tag": "forge:storage_blocks/pig_iron"
+  }
 }

@@ -5,5 +5,7 @@
     "amount": 1296,
     "tag": "forge:molten_gold"
   },
-  "result": "minecraft:gold_block"
+  "result": {
+    "tag": "forge:storage_blocks/gold"
+  }
 }

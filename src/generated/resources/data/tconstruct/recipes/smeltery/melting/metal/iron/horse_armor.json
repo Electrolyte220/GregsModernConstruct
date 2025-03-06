@@ -4,9 +4,9 @@
     "item": "minecraft:iron_horse_armor"
   },
   "result": {
-    "amount": 1008,
+    "amount": 112,
     "tag": "forge:molten_iron"
   },
   "temperature": 800,
-  "time": 201
+  "time": 67
 }

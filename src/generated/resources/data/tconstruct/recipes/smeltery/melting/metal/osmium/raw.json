@@ -3,16 +3,14 @@
   "byproducts": [
     {
       "amount": 144,
+      "rate": "metal",
       "tag": "forge:molten_iron"
     }
   ],
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:raw_materials/osmium"
-      }
+      "type": "mantle:tag_filled",
+      "tag": "forge:raw_materials/osmium"
     }
   ],
   "ingredient": {

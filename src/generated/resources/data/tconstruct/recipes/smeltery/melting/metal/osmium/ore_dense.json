@@ -3,14 +3,14 @@
   "byproducts": [
     {
       "amount": 864,
+      "rate": "metal",
       "tag": "forge:molten_iron"
     }
   ],
   "conditions": [
     {
-      "type": "tconstruct:tag_intersection_present",
-      "registry": "minecraft:item",
-      "tags": [
+      "type": "mantle:tag_combination_filled",
+      "match": [
         "forge:ores/osmium",
         "forge:ore_rates/dense"
       ]
