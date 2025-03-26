@@ -1,3 +1,9 @@
+- 1.0.5
+- Use GT fluids over Tinkers fluids where possible
+- Use Tinkers fluid temps over GT fluid temps where possible
+- Fix some GT items not being able to be melted
+- Fix mistyped controller recipe (Closes #4)
+
 - 1.0.4
 - Update to new Tinker's & GT versions
 
