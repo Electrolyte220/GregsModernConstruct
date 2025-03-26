@@ -9,7 +9,7 @@
   "cooling_time": 246,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_nickel"
+    "fluid": "gtceu:nickel"
   },
   "result": {
     "tag": "forge:storage_blocks/nickel"

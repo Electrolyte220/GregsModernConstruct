@@ -4,10 +4,10 @@
     "item": "tconstruct:pattern"
   },
   "cast_consumed": true,
-  "cooling_time": 76,
+  "cooling_time": 102,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_iron"
+    "fluid": "gtceu:iron"
   },
   "result": "tconstruct:iron_reinforcement"
 }

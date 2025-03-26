@@ -1,12 +1,5 @@
 {
-  "type": "tconstruct:ore_melting",
-  "byproducts": [
-    {
-      "amount": 144,
-      "rate": "metal",
-      "tag": "forge:molten_iron"
-    }
-  ],
+  "type": "forge:conditional",
   "conditions": [
     {
       "type": "mantle:tag_combination_filled",
@@ -16,22 +9,70 @@
       ]
     }
   ],
-  "ingredient": {
-    "type": "forge:intersection",
-    "children": [
-      {
-        "tag": "forge:ores/osmium"
-      },
-      {
-        "tag": "forge:ore_rates/sparse"
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 144,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "type": "forge:intersection",
+          "children": [
+            {
+              "tag": "forge:ores/osmium"
+            },
+            {
+              "tag": "forge:ore_rates/sparse"
+            }
+          ]
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:osmium"
+        },
+        "temperature": 975,
+        "time": 98
       }
-    ]
-  },
-  "rate": "metal",
-  "result": {
-    "amount": 144,
-    "tag": "forge:molten_osmium"
-  },
-  "temperature": 975,
-  "time": 98
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "type": "forge:intersection",
+          "children": [
+            {
+              "tag": "forge:ores/osmium"
+            },
+            {
+              "tag": "forge:ore_rates/sparse"
+            }
+          ]
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:osmium"
+        },
+        "temperature": 975,
+        "time": 98
+      }
+    }
+  ]
 }

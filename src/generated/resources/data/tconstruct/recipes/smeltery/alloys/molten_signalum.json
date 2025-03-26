@@ -22,15 +22,15 @@
   "inputs": [
     {
       "amount": 432,
-      "tag": "forge:molten_copper"
+      "fluid": "gtceu:copper"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_silver"
+      "fluid": "gtceu:silver"
     },
     {
-      "amount": 400,
-      "tag": "forge:redstone"
+      "amount": 576,
+      "fluid": "gtceu:redstone"
     }
   ],
   "result": {

@@ -9,16 +9,16 @@
   "inputs": [
     {
       "amount": 288,
-      "tag": "forge:molten_iron"
+      "fluid": "gtceu:iron"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_nickel"
+      "fluid": "gtceu:nickel"
     }
   ],
   "result": {
     "amount": 432,
-    "tag": "forge:molten_invar"
+    "fluid": "gtceu:invar"
   },
   "temperature": 900
 }

@@ -12,7 +12,7 @@
   "cooling_time": 83,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_platinum"
+    "fluid": "gtceu:platinum"
   },
   "result": {
     "tag": "forge:ingots/platinum"

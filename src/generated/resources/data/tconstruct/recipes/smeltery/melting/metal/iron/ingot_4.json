@@ -9,9 +9,9 @@
     }
   ],
   "result": {
-    "amount": 56,
-    "tag": "forge:molten_iron"
+    "amount": 576,
+    "fluid": "gtceu:iron"
   },
   "temperature": 800,
-  "time": 47
+  "time": 152
 }

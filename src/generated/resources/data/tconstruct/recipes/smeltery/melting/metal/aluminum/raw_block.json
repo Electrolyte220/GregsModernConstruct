@@ -1,26 +1,59 @@
 {
-  "type": "tconstruct:ore_melting",
-  "byproducts": [
-    {
-      "amount": 1296,
-      "rate": "metal",
-      "tag": "forge:molten_iron"
-    }
-  ],
+  "type": "forge:conditional",
   "conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "forge:storage_blocks/raw_aluminum"
     }
   ],
-  "ingredient": {
-    "tag": "forge:storage_blocks/raw_aluminum"
-  },
-  "rate": "metal",
-  "result": {
-    "amount": 1296,
-    "tag": "forge:molten_aluminum"
-  },
-  "temperature": 425,
-  "time": 283
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 1296,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:storage_blocks/raw_aluminum"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 1296,
+          "tag": "forge:molten_aluminum"
+        },
+        "temperature": 425,
+        "time": 283
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:storage_blocks/raw_aluminum"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 1296,
+          "tag": "forge:molten_aluminum"
+        },
+        "temperature": 425,
+        "time": 283
+      }
+    }
+  ]
 }

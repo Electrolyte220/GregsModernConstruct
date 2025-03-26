@@ -1,20 +1,53 @@
 {
-  "type": "tconstruct:ore_melting",
-  "byproducts": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "amount": 48,
-      "rate": "metal",
-      "tag": "forge:molten_gold"
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/gold"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 48,
+            "fluid": "gtceu:gold",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:raw_materials/copper"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:copper"
+        },
+        "temperature": 500,
+        "time": 75
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:raw_materials/copper"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:copper"
+        },
+        "temperature": 500,
+        "time": 75
+      }
     }
-  ],
-  "ingredient": {
-    "tag": "forge:raw_materials/copper"
-  },
-  "rate": "metal",
-  "result": {
-    "amount": 144,
-    "tag": "forge:molten_copper"
-  },
-  "temperature": 500,
-  "time": 75
+  ]
 }

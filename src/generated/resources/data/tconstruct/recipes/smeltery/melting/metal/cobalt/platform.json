@@ -5,8 +5,8 @@
   },
   "result": {
     "amount": 160,
-    "tag": "forge:molten_cobalt"
+    "fluid": "gtceu:cobalt"
   },
-  "temperature": 950,
-  "time": 86
+  "temperature": 500,
+  "time": 67
 }

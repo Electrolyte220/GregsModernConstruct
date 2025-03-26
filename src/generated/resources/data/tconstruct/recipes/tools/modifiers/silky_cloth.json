@@ -4,10 +4,10 @@
     "item": "minecraft:cobweb"
   },
   "cast_consumed": true,
-  "cooling_time": 65,
+  "cooling_time": 85,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_rose_gold"
+    "fluid": "gtceu:rose_gold"
   },
   "result": "tconstruct:silky_cloth"
 }

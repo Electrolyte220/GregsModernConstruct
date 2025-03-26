@@ -20,6 +20,7 @@ import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.recipe.casting.material.MaterialFluidRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.MaterialMeltingRecipeBuilder;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecipeHelper {
@@ -30,51 +31,56 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
 
     public void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            if(! material.hasProperty(PropertyKey.ORE))
-                continue;
+            if(!material.hasProperty(PropertyKey.ORE)) continue;
             Material smeltsIntoMaterial = material.getProperty(PropertyKey.ORE).getDirectSmeltResult();
-            if(smeltsIntoMaterial == null)
-                continue;
-            if(material.getName().equals(smeltsIntoMaterial.getName()))
-                continue;
-            if(! smeltsIntoMaterial.hasProperty(PropertyKey.FLUID))
-                continue;
-            metal(provider, material.getName(), smeltsIntoMaterial.getFluidTag(), smeltsIntoMaterial.getFluid()).optional().metal().ore().rawOre().dust().plate().gear().coin().rod().wire().sheetmetal().geore();
+            if(smeltsIntoMaterial == null) continue;
+            if(material.getName().equals(smeltsIntoMaterial.getName())) continue;
+            if(!smeltsIntoMaterial.hasProperty(PropertyKey.FLUID)) continue;
+            Optional<Fluid> fluid = getFluid(smeltsIntoMaterial, smeltsIntoMaterial.getFluidTag());
+            if(fluid.isEmpty()) continue;
+            metal(provider, material.getName(), fluid.get(), GTMaterialHelper.findTemp(smeltsIntoMaterial)).optional().ore().metal().dust().plate().gear().coin().rod().wire().sheetmetal().geore();
         }
 
         for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
-            if(! material.hasProperty(PropertyKey.FLUID)) {
-                GMConstruct.LOGGER.warn("Material {} does not have a fluid, no solidification recipes will be added for this material.", material);
-                continue;
-            }
             MaterialId materialId = GMConstruct.materialId(material.getName());
             metalMaterialRecipe(provider, materialId, "tools/materials/", material.getName(), false); //repairing via material nugget/ingot/block in tool station
 
             if(GMCConfig.GENERATE_MELTING_CASTING_RECIPES.get()) {
-                MaterialMeltingRecipeBuilder.material(materialId, material.getFluid().getFluidType().getTemperature() - 300, new FluidStack(material.getFluid(), 144))
+                Optional<Fluid> fluid = getFluid(material, material.getFluidTag());
+                if(fluid.isEmpty()) continue;
+                int temp = GTMaterialHelper.findTemp(material);
+                MaterialMeltingRecipeBuilder.material(materialId, temp, new FluidStack(fluid.get(), 144))
                         .save(provider, location("tools/materials/melting/" + material.getName())); //melting recipes for tool parts
 
-                metal(provider, material.getName(), material.getFluidTag(), material.getFluid()).optional().metal().ore().rawOre().dust().plate().gear().coin().rod().wire().sheetmetal().geore();
+                metal(provider, material.getName(), fluid.get(), GTMaterialHelper.findTemp(material)).optional().ore().metal().dust().plate().gear().coin().rod().wire().sheetmetal().geore();
 
                 MaterialFluidRecipeBuilder.material(materialId)
                         .setFluid(material.getFluidTag(), 144)
-                        .setTemperature(material.getFluid().getFluidType().getTemperature() - 300)
+                        .setTemperature(temp)
                         .save(provider, location("tools/materials/casting/" + material.getName())); //casting recipes for material tool parts
             }
         }
     }
 
-    public SmelteryRecipeBuilder metal(Consumer<FinishedRecipe> consumer, String name, TagKey<Fluid> fluidTag, Fluid fallback) {
+    public SmelteryRecipeBuilder metal(Consumer<FinishedRecipe> consumer, String name, Fluid fluid, int temp) {
+        return SmelteryRecipeBuilder.fluid(consumer, location(name), fluid).castingFolder("smeltery/casting/metal").meltingFolder("smeltery/melting/metal").temperature(temp);
+    }
+
+    public Optional<Fluid> getFluid(Material material, TagKey<Fluid> fluidTag) {
         ResourceLocation tagLoc = fluidTag.location();
         String fluidName = tagLoc.getPath();
         Fluid output;
         ResourceLocation fluidLoc = new ResourceLocation(TConstruct.MOD_ID, "molten_" + fluidName);
-        if(ForgeRegistries.FLUIDS.containsKey(fluidLoc)) {
+        if(material.hasProperty(PropertyKey.FLUID)) {
+            output = material.getFluid();
+        }
+        else if(ForgeRegistries.FLUIDS.containsKey(fluidLoc)) {
             output = ForgeRegistries.FLUIDS.getValue(fluidLoc);
         } else {
-            output = fallback;
+            GMConstruct.LOGGER.warn("Material {} does not have a fluid, no smeltery recipes will be added for this material.", material);
+            return Optional.empty();
         }
-        return SmelteryRecipeBuilder.fluid(consumer, location(name), output).castingFolder("smeltery/casting/metal").meltingFolder("smeltery/melting/metal");
+        return Optional.of(output);
     }
 
     @Override

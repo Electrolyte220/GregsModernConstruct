@@ -9,7 +9,7 @@
   "cooling_time": 227,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_silver"
+    "fluid": "gtceu:silver"
   },
   "result": {
     "tag": "forge:storage_blocks/silver"

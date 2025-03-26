@@ -4,10 +4,10 @@
     "item": "minecraft:apple"
   },
   "cast_consumed": true,
-  "cooling_time": 204,
+  "cooling_time": 241,
   "fluid": {
     "amount": 1152,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "result": "minecraft:golden_apple"
 }

@@ -11,7 +11,7 @@
   },
   "result": {
     "amount": 144,
-    "tag": "forge:molten_zinc"
+    "fluid": "gtceu:zinc"
   },
   "temperature": 420,
   "time": 35

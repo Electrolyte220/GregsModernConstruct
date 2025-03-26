@@ -3,7 +3,7 @@
   "input": "tconstruct:cobalt",
   "result": {
     "amount": 144,
-    "tag": "forge:molten_cobalt"
+    "fluid": "gtceu:cobalt"
   },
   "temperature": 950
 }

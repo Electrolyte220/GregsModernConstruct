@@ -3,7 +3,7 @@
   "inputs": [
     {
       "amount": 144,
-      "tag": "forge:molten_iron"
+      "fluid": "gtceu:iron"
     },
     {
       "amount": 250,

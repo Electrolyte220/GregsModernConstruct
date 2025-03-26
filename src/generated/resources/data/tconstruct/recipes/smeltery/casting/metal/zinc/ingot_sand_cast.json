@@ -13,7 +13,7 @@
   "cooling_time": 59,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_zinc"
+    "fluid": "gtceu:zinc"
   },
   "result": {
     "tag": "forge:ingots/zinc"

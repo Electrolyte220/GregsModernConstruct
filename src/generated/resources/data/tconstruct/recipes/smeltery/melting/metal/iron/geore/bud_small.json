@@ -1,26 +1,59 @@
 {
-  "type": "tconstruct:ore_melting",
-  "byproducts": [
-    {
-      "amount": 144,
-      "rate": "metal",
-      "tag": "forge:molten_steel"
-    }
-  ],
+  "type": "forge:conditional",
   "conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "forge:geore_small_buds/iron"
     }
   ],
-  "ingredient": {
-    "tag": "forge:geore_small_buds/iron"
-  },
-  "rate": "metal",
-  "result": {
-    "amount": 144,
-    "tag": "forge:molten_iron"
-  },
-  "temperature": 800,
-  "time": 60
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/steel"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 144,
+            "fluid": "gtceu:steel",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:geore_small_buds/iron"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:iron"
+        },
+        "temperature": 800,
+        "time": 60
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:geore_small_buds/iron"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:iron"
+        },
+        "temperature": 800,
+        "time": 60
+      }
+    }
+  ]
 }

@@ -12,7 +12,7 @@
   "cooling_time": 63,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_copper"
+    "fluid": "gtceu:copper"
   },
   "result": {
     "tag": "forge:plates/copper"

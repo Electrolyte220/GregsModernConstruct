@@ -3,7 +3,7 @@
   "cooling_time": 196,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_rose_gold"
+    "fluid": "gtceu:rose_gold"
   },
   "result": {
     "tag": "forge:storage_blocks/rose_gold"

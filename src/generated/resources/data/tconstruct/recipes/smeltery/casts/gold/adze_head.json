@@ -5,10 +5,10 @@
     "item": "tconstruct:adze_head"
   },
   "cast_consumed": true,
-  "cooling_time": 72,
+  "cooling_time": 85,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "result": "tconstruct:adze_head_cast",
   "switch_slots": true

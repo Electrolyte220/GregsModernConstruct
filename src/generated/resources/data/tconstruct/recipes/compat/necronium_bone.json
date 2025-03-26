@@ -10,10 +10,10 @@
       "tag": "forge:ingots/uranium"
     }
   ],
-  "cooling_time": 77,
+  "cooling_time": 88,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_uranium"
+    "fluid": "gtceu:uranium"
   },
   "result": "tconstruct:necronium_bone"
 }

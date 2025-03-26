@@ -4,10 +4,10 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CompoundIngredient;
+import net.minecraftforge.fluids.FluidStack;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.registration.CastItemObject;
-import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 import slimeknights.tconstruct.library.data.recipe.IToolRecipeHelper;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -16,6 +16,8 @@ import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerToolParts;
 
 import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Gold;
 
 public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecipeHelper {
 
@@ -50,7 +52,7 @@ public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecip
     @Override
     public void castCreation(Consumer<FinishedRecipe> consumer, Ingredient input, CastItemObject cast, String folder, String name) {
         ItemCastingRecipeBuilder.tableRecipe(cast)
-                .setFluidAndTime(TinkerFluids.moltenGold, 144)
+                .setFluidAndTime(new FluidStack(Gold.getFluid(), 144))
                 .setCast(input, true)
                 .setSwitchSlots()
                 .save(consumer, location(folder + "gold/" + name));

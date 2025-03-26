@@ -10,10 +10,10 @@
       "modid": "create"
     }
   ],
-  "cooling_time": 20,
+  "cooling_time": 19,
   "fluid": {
     "amount": 16,
-    "tag": "forge:molten_zinc"
+    "fluid": "gtceu:zinc"
   },
   "result": "create:andesite_alloy"
 }

@@ -3,7 +3,7 @@
   "byproducts": [
     {
       "amount": 144,
-      "tag": "forge:molten_copper"
+      "fluid": "gtceu:copper"
     }
   ],
   "ingredient": {
@@ -12,7 +12,7 @@
   "rate": "metal",
   "result": {
     "amount": 144,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "temperature": 700,
   "time": 72

@@ -1,26 +1,59 @@
 {
-  "type": "tconstruct:ore_melting",
-  "byproducts": [
-    {
-      "amount": 48,
-      "rate": "metal",
-      "tag": "forge:molten_gold"
-    }
-  ],
+  "type": "forge:conditional",
   "conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "forge:geore_small_buds/copper"
     }
   ],
-  "ingredient": {
-    "tag": "forge:geore_small_buds/copper"
-  },
-  "rate": "metal",
-  "result": {
-    "amount": 144,
-    "tag": "forge:molten_copper"
-  },
-  "temperature": 500,
-  "time": 50
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/gold"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 48,
+            "fluid": "gtceu:gold",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:geore_small_buds/copper"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:copper"
+        },
+        "temperature": 500,
+        "time": 50
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:geore_small_buds/copper"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:copper"
+        },
+        "temperature": 500,
+        "time": 50
+      }
+    }
+  ]
 }

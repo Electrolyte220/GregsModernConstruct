@@ -4,9 +4,9 @@
     "item": "minecraft:enchanted_golden_apple"
   },
   "result": {
-    "amount": 6480,
-    "tag": "forge:molten_gold"
+    "amount": 10368,
+    "fluid": "gtceu:gold"
   },
   "temperature": 700,
-  "time": 483
+  "time": 611
 }

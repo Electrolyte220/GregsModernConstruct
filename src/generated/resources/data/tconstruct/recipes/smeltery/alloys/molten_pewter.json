@@ -23,11 +23,11 @@
         "inputs": [
           {
             "amount": 288,
-            "tag": "forge:molten_tin"
+            "fluid": "gtceu:tin"
           },
           {
             "amount": 144,
-            "tag": "forge:molten_lead"
+            "fluid": "gtceu:lead"
           }
         ],
         "result": {
@@ -48,11 +48,11 @@
         "inputs": [
           {
             "amount": 144,
-            "tag": "forge:molten_iron"
+            "fluid": "gtceu:iron"
           },
           {
             "amount": 144,
-            "tag": "forge:molten_lead"
+            "fluid": "gtceu:lead"
           }
         ],
         "result": {

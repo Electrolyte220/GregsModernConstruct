@@ -9,11 +9,11 @@
   "inputs": [
     {
       "amount": 144,
-      "tag": "forge:molten_copper"
+      "fluid": "gtceu:copper"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_nickel"
+      "fluid": "gtceu:nickel"
     }
   ],
   "result": {

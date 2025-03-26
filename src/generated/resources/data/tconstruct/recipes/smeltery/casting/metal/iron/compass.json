@@ -4,10 +4,10 @@
     "item": "minecraft:redstone"
   },
   "cast_consumed": true,
-  "cooling_time": 152,
+  "cooling_time": 204,
   "fluid": {
     "amount": 576,
-    "tag": "forge:molten_iron"
+    "fluid": "gtceu:iron"
   },
   "result": "minecraft:compass"
 }

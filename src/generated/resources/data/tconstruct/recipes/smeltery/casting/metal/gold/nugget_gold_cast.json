@@ -6,7 +6,7 @@
   "cooling_time": 24,
   "fluid": {
     "amount": 16,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "result": {
     "tag": "forge:nuggets/gold"

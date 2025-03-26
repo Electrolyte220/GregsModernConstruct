@@ -3,15 +3,15 @@
   "byproducts": [
     {
       "amount": 336,
-      "tag": "forge:molten_steel"
+      "fluid": "gtceu:steel"
     }
   ],
   "ingredient": {
     "item": "minecraft:chainmail_leggings"
   },
   "result": {
-    "amount": 672,
-    "tag": "forge:molten_iron",
+    "amount": 480,
+    "fluid": "gtceu:iron",
     "unit_size": 16
   },
   "temperature": 800,

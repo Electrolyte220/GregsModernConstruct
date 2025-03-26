@@ -19,8 +19,8 @@
         "byproducts": [
           {
             "amount": 1296,
-            "rate": "metal",
-            "tag": "forge:molten_platinum"
+            "fluid": "gtceu:platinum",
+            "rate": "metal"
           }
         ],
         "ingredient": {
@@ -29,7 +29,35 @@
         "rate": "metal",
         "result": {
           "amount": 1296,
-          "tag": "forge:molten_nickel"
+          "fluid": "gtceu:nickel"
+        },
+        "temperature": 950,
+        "time": 389
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 1296,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:storage_blocks/raw_nickel"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 1296,
+          "fluid": "gtceu:nickel"
         },
         "temperature": 950,
         "time": 389
@@ -43,20 +71,13 @@
       ],
       "recipe": {
         "type": "tconstruct:ore_melting",
-        "byproducts": [
-          {
-            "amount": 1296,
-            "rate": "metal",
-            "tag": "forge:molten_iron"
-          }
-        ],
         "ingredient": {
           "tag": "forge:storage_blocks/raw_nickel"
         },
         "rate": "metal",
         "result": {
           "amount": 1296,
-          "tag": "forge:molten_nickel"
+          "fluid": "gtceu:nickel"
         },
         "temperature": 950,
         "time": 389

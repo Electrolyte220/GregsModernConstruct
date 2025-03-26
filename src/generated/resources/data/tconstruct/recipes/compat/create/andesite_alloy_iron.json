@@ -10,10 +10,10 @@
       "modid": "create"
     }
   ],
-  "cooling_time": 25,
+  "cooling_time": 34,
   "fluid": {
     "amount": 16,
-    "tag": "forge:molten_iron"
+    "fluid": "gtceu:iron"
   },
   "result": "create:andesite_alloy"
 }

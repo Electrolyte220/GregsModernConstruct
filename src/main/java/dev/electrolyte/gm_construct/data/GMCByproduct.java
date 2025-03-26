@@ -2,38 +2,40 @@ package dev.electrolyte.gm_construct.data;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.minecraft.world.level.material.Fluid;
 import slimeknights.mantle.recipe.helper.FluidOutput;
-import slimeknights.mantle.registration.object.FluidObject;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.data.recipe.IByproduct;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingContainer.OreRateType;
 
 import java.util.Locale;
 
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+
 @RequiredArgsConstructor
 @Getter
 public enum GMCByproduct implements IByproduct {
-    COPPER    (true, TinkerFluids.moltenCopper),
-    IRON      (true, TinkerFluids.moltenIron),
-    GOLD      (true, TinkerFluids.moltenGold),
-    SMALL_GOLD("gold", true, TinkerFluids.moltenGold, 16 * 3, OreRateType.METAL),
-    COBALT    (true, TinkerFluids.moltenCobalt),
-    STEEL     (true, TinkerFluids.moltenSteel),
-    DEBRIS    ("netherite_scrap", true, TinkerFluids.moltenDebris, 144, OreRateType.METAL),
+    COPPER    (false, Copper.getFluid()),
+    IRON      (false, Iron.getFluid()),
+    GOLD      (false, Gold.getFluid()),
+    SMALL_GOLD("gold", false, Gold.getFluid(), 16 * 3, OreRateType.METAL),
+    COBALT    (false, Cobalt.getFluid()),
+    STEEL     (false, Steel.getFluid()),
+    DEBRIS    ("netherite_scrap", false, TinkerFluids.moltenDebris.get(), 144, OreRateType.METAL),
 
-    TIN     (false, TinkerFluids.moltenTin),
-    SILVER  (false, TinkerFluids.moltenSilver),
-    NICKEL  (false, TinkerFluids.moltenNickel),
-    LEAD    (false, TinkerFluids.moltenLead),
-    PLATINUM(false, TinkerFluids.moltenPlatinum);
+    TIN     (false, Tin.getFluid()),
+    SILVER  (false, Silver.getFluid()),
+    NICKEL  (false, Nickel.getFluid()),
+    LEAD    (false, Lead.getFluid()),
+    PLATINUM(false, Platinum.getFluid());
 
     private final String name;
     private final boolean alwaysPresent;
-    private final FluidObject<?> fluid;
+    private final Fluid fluid;
     private final int amount;
     private final OreRateType oreRate;
 
-    GMCByproduct(boolean alwaysPresent, FluidObject<?> fluid, int amount, OreRateType oreRate) {
+    GMCByproduct(boolean alwaysPresent, Fluid fluid, int amount, OreRateType oreRate) {
         this.name = name().toLowerCase(Locale.ROOT);
         this.alwaysPresent = alwaysPresent;
         this.fluid = fluid;
@@ -41,12 +43,12 @@ public enum GMCByproduct implements IByproduct {
         this.oreRate = oreRate;
     }
 
-    GMCByproduct(boolean alwaysPresent, FluidObject<?> fluid) {
+    GMCByproduct(boolean alwaysPresent, Fluid fluid) {
         this(alwaysPresent, fluid, 144, OreRateType.METAL);
     }
 
     @Override
     public FluidOutput getFluid(float scale) {
-        return fluid.result((int) (amount * scale));
+        return FluidOutput.fromFluid(fluid, (int) (amount * scale));
     }
 }

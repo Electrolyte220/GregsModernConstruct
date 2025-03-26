@@ -13,7 +13,7 @@
   "cooling_time": 25,
   "fluid": {
     "amount": 16,
-    "tag": "forge:molten_electrum"
+    "fluid": "gtceu:electrum"
   },
   "result": {
     "tag": "forge:nuggets/electrum"

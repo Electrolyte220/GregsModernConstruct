@@ -3,16 +3,16 @@
   "inputs": [
     {
       "amount": 144,
-      "tag": "forge:molten_copper"
+      "fluid": "gtceu:copper"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_gold"
+      "fluid": "gtceu:gold"
     }
   ],
   "result": {
     "amount": 288,
-    "tag": "forge:molten_rose_gold"
+    "fluid": "gtceu:rose_gold"
   },
   "temperature": 550
 }

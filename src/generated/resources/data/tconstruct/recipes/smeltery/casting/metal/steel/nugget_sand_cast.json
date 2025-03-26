@@ -7,7 +7,7 @@
   "cooling_time": 27,
   "fluid": {
     "amount": 16,
-    "tag": "forge:molten_steel"
+    "fluid": "gtceu:steel"
   },
   "result": {
     "tag": "forge:nuggets/steel"

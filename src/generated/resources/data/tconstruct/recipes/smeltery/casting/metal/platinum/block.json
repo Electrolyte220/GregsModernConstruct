@@ -9,7 +9,7 @@
   "cooling_time": 248,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_platinum"
+    "fluid": "gtceu:platinum"
   },
   "result": {
     "tag": "forge:storage_blocks/platinum"

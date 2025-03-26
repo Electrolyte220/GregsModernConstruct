@@ -9,7 +9,7 @@
   "cooling_time": 246,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_tungsten"
+    "fluid": "gtceu:tungsten"
   },
   "result": {
     "tag": "forge:storage_blocks/tungsten"

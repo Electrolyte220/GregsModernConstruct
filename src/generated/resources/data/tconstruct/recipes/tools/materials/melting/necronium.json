@@ -9,7 +9,7 @@
   "input": "tconstruct:necronium",
   "result": {
     "amount": 144,
-    "tag": "forge:molten_uranium"
+    "fluid": "gtceu:uranium"
   },
   "temperature": 830
 }

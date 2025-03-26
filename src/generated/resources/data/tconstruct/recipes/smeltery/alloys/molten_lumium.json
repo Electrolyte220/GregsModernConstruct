@@ -22,11 +22,11 @@
   "inputs": [
     {
       "amount": 432,
-      "tag": "forge:molten_tin"
+      "fluid": "gtceu:tin"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_silver"
+      "fluid": "gtceu:silver"
     },
     {
       "amount": 500,

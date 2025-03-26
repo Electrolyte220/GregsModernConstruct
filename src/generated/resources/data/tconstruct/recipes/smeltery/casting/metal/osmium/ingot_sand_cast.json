@@ -13,7 +13,7 @@
   "cooling_time": 83,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_osmium"
+    "fluid": "gtceu:osmium"
   },
   "result": {
     "tag": "forge:ingots/osmium"

@@ -4,10 +4,10 @@
     "item": "minecraft:torch"
   },
   "cast_consumed": true,
-  "cooling_time": 72,
+  "cooling_time": 96,
   "fluid": {
     "amount": 128,
-    "tag": "forge:molten_iron"
+    "fluid": "gtceu:iron"
   },
   "result": "minecraft:lantern"
 }

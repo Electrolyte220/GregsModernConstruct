@@ -14,10 +14,10 @@
       "tag": "forge:ingots/osmium"
     }
   ],
-  "cooling_time": 83,
+  "cooling_time": 145,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_osmium"
+    "fluid": "gtceu:osmium"
   },
   "result": {
     "tag": "forge:ingots/refined_obsidian"

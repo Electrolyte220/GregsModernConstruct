@@ -9,16 +9,16 @@
   "inputs": [
     {
       "amount": 432,
-      "tag": "forge:molten_copper"
+      "fluid": "gtceu:copper"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_tin"
+      "fluid": "gtceu:tin"
     }
   ],
   "result": {
     "amount": 576,
-    "tag": "forge:molten_bronze"
+    "fluid": "gtceu:bronze"
   },
   "temperature": 700
 }

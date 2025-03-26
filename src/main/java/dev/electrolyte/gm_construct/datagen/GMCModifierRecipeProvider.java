@@ -2,6 +2,7 @@ package dev.electrolyte.gm_construct.datagen;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.fluids.FluidStack;
 import slimeknights.mantle.recipe.data.IRecipeHelper;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.fluids.TinkerFluids;
@@ -11,6 +12,8 @@ import slimeknights.tconstruct.tables.TinkerTables;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 
 import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class GMCModifierRecipeProvider implements IRecipeHelper {
     
@@ -25,21 +28,21 @@ public class GMCModifierRecipeProvider implements IRecipeHelper {
                 .setCast(TinkerCommons.obsidianPane, true)
                 .save(consumer, prefix(TinkerModifiers.slimesteelReinforcement, folder));
         ItemCastingRecipeBuilder.tableRecipe(TinkerModifiers.ironReinforcement)
-                .setFluidAndTime(TinkerFluids.moltenIron, 144)
+                .setFluidAndTime(new FluidStack(Iron.getFluid(), 144))
                 .setCast(TinkerTables.pattern, true)
                 .save(consumer, prefix(TinkerModifiers.ironReinforcement, folder));
         ItemCastingRecipeBuilder.tableRecipe(TinkerModifiers.goldReinforcement)
-                .setFluidAndTime(TinkerFluids.moltenGold, 144)
+                .setFluidAndTime(new FluidStack(Gold.getFluid(), 144))
                 .setCast(TinkerTables.pattern, true)
                 .save(consumer, prefix(TinkerModifiers.goldReinforcement, folder));
         ItemCastingRecipeBuilder.tableRecipe(TinkerModifiers.cobaltReinforcement)
-                .setFluidAndTime(TinkerFluids.moltenCobalt, 144)
+                .setFluidAndTime(new FluidStack(Cobalt.getFluid(), 144))
                 .setCast(TinkerTables.pattern, true)
                 .save(consumer, prefix(TinkerModifiers.cobaltReinforcement, folder));
 
         ItemCastingRecipeBuilder.tableRecipe(TinkerModifiers.silkyCloth)
                 .setCast(Items.COBWEB, true)
-                .setFluidAndTime(TinkerFluids.moltenRoseGold, 144)
+                .setFluidAndTime(new FluidStack(RoseGold.getFluid(), 144))
                 .save(consumer, prefix(TinkerModifiers.silkyCloth, folder));
     }
 

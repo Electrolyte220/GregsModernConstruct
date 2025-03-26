@@ -12,7 +12,7 @@
   "cooling_time": 155,
   "fluid": {
     "amount": 576,
-    "tag": "forge:molten_uranium"
+    "fluid": "gtceu:uranium"
   },
   "result": {
     "tag": "forge:gears/uranium"

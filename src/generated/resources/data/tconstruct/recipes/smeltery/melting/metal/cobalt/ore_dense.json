@@ -30,7 +30,7 @@
   "rate": "metal",
   "result": {
     "amount": 864,
-    "tag": "forge:molten_cobalt"
+    "fluid": "gtceu:cobalt"
   },
   "temperature": 950,
   "time": 292

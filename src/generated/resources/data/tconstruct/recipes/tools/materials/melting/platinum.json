@@ -9,7 +9,7 @@
   "input": "tconstruct:platinum",
   "result": {
     "amount": 144,
-    "tag": "forge:molten_platinum"
+    "fluid": "gtceu:platinum"
   },
   "temperature": 970
 }

@@ -3,11 +3,11 @@
   "inputs": [
     {
       "amount": 144,
-      "tag": "forge:molten_cobalt"
+      "fluid": "gtceu:cobalt"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_gold"
+      "fluid": "gtceu:gold"
     },
     {
       "amount": 250,

@@ -10,10 +10,10 @@
       "tag": "forge:coins"
     }
   ],
-  "cooling_time": 72,
+  "cooling_time": 85,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "result": "tconstruct:coin_cast",
   "switch_slots": true

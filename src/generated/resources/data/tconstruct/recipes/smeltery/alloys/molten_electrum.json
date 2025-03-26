@@ -9,16 +9,16 @@
   "inputs": [
     {
       "amount": 144,
-      "tag": "forge:molten_gold"
+      "fluid": "gtceu:gold"
     },
     {
       "amount": 144,
-      "tag": "forge:molten_silver"
+      "fluid": "gtceu:silver"
     }
   ],
   "result": {
     "amount": 288,
-    "tag": "forge:molten_electrum"
+    "fluid": "gtceu:electrum"
   },
   "temperature": 760
 }

@@ -13,7 +13,7 @@
   "cooling_time": 72,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_gold"
+    "fluid": "gtceu:gold"
   },
   "result": {
     "tag": "forge:plates/gold"

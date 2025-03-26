@@ -9,7 +9,7 @@
   "cooling_time": 216,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_bronze"
+    "fluid": "gtceu:bronze"
   },
   "result": {
     "tag": "forge:storage_blocks/bronze"

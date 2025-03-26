@@ -11,7 +11,7 @@
   },
   "result": {
     "amount": 1296,
-    "tag": "forge:molten_tungsten"
+    "fluid": "gtceu:tungsten"
   },
   "temperature": 950,
   "time": 194

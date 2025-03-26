@@ -19,8 +19,8 @@
         "byproducts": [
           {
             "amount": 144,
-            "rate": "metal",
-            "tag": "forge:molten_silver"
+            "fluid": "gtceu:silver",
+            "rate": "metal"
           }
         ],
         "ingredient": {
@@ -29,7 +29,35 @@
         "rate": "metal",
         "result": {
           "amount": 144,
-          "tag": "forge:molten_lead"
+          "fluid": "gtceu:lead"
+        },
+        "temperature": 330,
+        "time": 65
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/gold"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 144,
+            "fluid": "gtceu:gold",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:raw_materials/lead"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 144,
+          "fluid": "gtceu:lead"
         },
         "temperature": 330,
         "time": 65
@@ -43,20 +71,13 @@
       ],
       "recipe": {
         "type": "tconstruct:ore_melting",
-        "byproducts": [
-          {
-            "amount": 144,
-            "rate": "metal",
-            "tag": "forge:molten_gold"
-          }
-        ],
         "ingredient": {
           "tag": "forge:raw_materials/lead"
         },
         "rate": "metal",
         "result": {
           "amount": 144,
-          "tag": "forge:molten_lead"
+          "fluid": "gtceu:lead"
         },
         "temperature": 330,
         "time": 65

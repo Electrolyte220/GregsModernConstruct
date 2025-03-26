@@ -4,10 +4,10 @@
     "item": "tconstruct:pattern"
   },
   "cast_consumed": true,
-  "cooling_time": 82,
+  "cooling_time": 100,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_cobalt"
+    "fluid": "gtceu:cobalt"
   },
   "result": "tconstruct:cobalt_reinforcement"
 }

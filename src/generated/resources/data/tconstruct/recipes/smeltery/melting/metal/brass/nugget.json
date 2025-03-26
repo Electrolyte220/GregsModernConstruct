@@ -11,7 +11,7 @@
   },
   "result": {
     "amount": 16,
-    "tag": "forge:molten_brass"
+    "fluid": "gtceu:brass"
   },
   "temperature": 605,
   "time": 18

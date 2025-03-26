@@ -13,7 +13,7 @@
   "cooling_time": 76,
   "fluid": {
     "amount": 144,
-    "tag": "forge:molten_iron"
+    "fluid": "gtceu:iron"
   },
   "result": {
     "tag": "forge:plates/iron"

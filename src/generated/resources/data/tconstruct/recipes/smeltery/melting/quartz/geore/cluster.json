@@ -1,0 +1,59 @@
+{
+  "type": "forge:conditional",
+  "conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "forge:geore_clusters/quartz"
+    }
+  ],
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 576,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:geore_clusters/quartz"
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 400,
+          "fluid": "tconstruct:molten_quartz"
+        },
+        "temperature": 637,
+        "time": 137
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:geore_clusters/quartz"
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 400,
+          "fluid": "tconstruct:molten_quartz"
+        },
+        "temperature": 637,
+        "time": 137
+      }
+    }
+  ]
+}

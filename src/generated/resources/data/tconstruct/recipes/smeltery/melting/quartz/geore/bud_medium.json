@@ -1,0 +1,59 @@
+{
+  "type": "forge:conditional",
+  "conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "forge:geore_medium_buds/quartz"
+    }
+  ],
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 288,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:geore_medium_buds/quartz"
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 200,
+          "fluid": "tconstruct:molten_quartz"
+        },
+        "temperature": 637,
+        "time": 82
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:geore_medium_buds/quartz"
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 200,
+          "fluid": "tconstruct:molten_quartz"
+        },
+        "temperature": 637,
+        "time": 82
+      }
+    }
+  ]
+}

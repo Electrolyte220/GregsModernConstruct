@@ -9,7 +9,7 @@
   "cooling_time": 240,
   "fluid": {
     "amount": 1296,
-    "tag": "forge:molten_invar"
+    "fluid": "gtceu:invar"
   },
   "result": {
     "tag": "forge:storage_blocks/invar"
