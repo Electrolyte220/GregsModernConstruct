@@ -2,7 +2,7 @@ package dev.electrolyte.gm_construct.recipes;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import dev.electrolyte.gm_construct.GMConstruct;
 import dev.electrolyte.gm_construct.config.GMCConfig;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
@@ -25,11 +25,11 @@ public class GMCMaterialMachineRecipes {
 
     public static void register(Consumer<FinishedRecipe> provider) {
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
-            UnificationEntry inputMaterial;
+            MaterialEntry inputMaterial;
             if(material.hasProperty(PropertyKey.GEM)) {
-                inputMaterial = new UnificationEntry(gem, material);
+                inputMaterial = new MaterialEntry(gem, material);
             } else {
-                inputMaterial = new UnificationEntry(ingot, material);
+                inputMaterial = new MaterialEntry(ingot, material);
             }
 
             if(GMCConfig.GENERATE_EXTRUDER_RECIPES.get()) {
@@ -53,8 +53,8 @@ public class GMCMaterialMachineRecipes {
             }
 
             if(GMCConfig.GENERATE_FLUID_SOLIDIFICATION_RECIPES.get()) {
-                if(!inputMaterial.material.hasProperty(PropertyKey.FLUID)) {
-                    GMConstruct.LOGGER.warn("Material {} does not have a fluid, no solidification recipes will be added for this material.", inputMaterial.material);
+                if(!inputMaterial.material().hasProperty(PropertyKey.FLUID)) {
+                    GMConstruct.LOGGER.warn("Material {} does not have a fluid, no solidification recipes will be added for this material.", inputMaterial.material());
                     continue;
                 }
                 generateSolidifierRecipes(inputMaterial, TinkerToolParts.repairKit, 2, TinkerSmeltery.repairKitCast, "repair_kit", provider);
@@ -78,22 +78,22 @@ public class GMCMaterialMachineRecipes {
         }
     }
 
-    private static void generateExtruderRecipes(UnificationEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
-        EXTRUDER_RECIPES.recipeBuilder(GMConstruct.id("extrude_" + inputMaterial.material.getName() + "_to_" + path))
+    private static void generateExtruderRecipes(MaterialEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
+        EXTRUDER_RECIPES.recipeBuilder(GMConstruct.id("extrude_" + inputMaterial.material().getName() + "_to_" + path))
                 .inputItems(inputMaterial, materialCost)
                 .notConsumable(cast)
-                .outputItems(getToolStack(toolPartStack, inputMaterial.material))
-                .duration((int) (20 * inputMaterial.material.getMass() * materialCost))
+                .outputItems(getToolStack(toolPartStack, inputMaterial.material()))
+                .duration((int) (20 * inputMaterial.material().getMass() * materialCost))
                 .EUt(VA[MV])
                 .save(provider);
     }
 
-    private static void generateSolidifierRecipes(UnificationEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GMConstruct.id("solidify_" + inputMaterial.material.getName() + "_to_" + path))
-                .inputFluids(inputMaterial.material.getFluid(materialCost * L))
+    private static void generateSolidifierRecipes(MaterialEntry inputMaterial, ItemObject<?> toolPartStack, int materialCost, CastItemObject cast, String path, Consumer<FinishedRecipe> provider) {
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GMConstruct.id("solidify_" + inputMaterial.material().getName() + "_to_" + path))
+                .inputFluids(inputMaterial.material().getFluid(materialCost * L))
                 .notConsumable(cast)
-                .outputItems(getToolStack(toolPartStack, inputMaterial.material))
-                .duration((int) (20 * inputMaterial.material.getMass() * materialCost))
+                .outputItems(getToolStack(toolPartStack, inputMaterial.material()))
+                .duration((int) (20 * inputMaterial.material().getMass() * materialCost))
                 .EUt(VA[MV])
                 .save(provider);
     }
