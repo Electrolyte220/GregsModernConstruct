@@ -1,5 +1,11 @@
-// 1.20.1	2025-06-24T12:47:56.273079581	Recipes
+// 1.20.1	2025-06-24T13:09:16.514729779	Recipes
 e968f7b081e2987ec0a761aa2ed4859d9127819e data/tconstruct/recipes/common/encyclopedia.json
+49a2143851b29fcca2459f2f8bb16e6007750f73 data/tconstruct/recipes/compat/ceramics/casting/golden_bricks.json
+d02d72d5f2a10628a717811593b6f70684c9c201 data/tconstruct/recipes/compat/ceramics/casting/golden_bricks_slab.json
+7cc538442811d94c165cea01d2fe7028257d8aff data/tconstruct/recipes/compat/ceramics/casting/golden_bricks_stairs.json
+00c24324f11e1e1a4b24280f97c2774af3fc2d09 data/tconstruct/recipes/compat/ceramics/casting/golden_bricks_wall.json
+8fb8e27080f3404b90ea8ff00ed19eafd8c90c7e data/tconstruct/recipes/compat/ceramics/porcelain/golden_bricks_block.json
+557732fed15d875c590628cdc581b7108df03ada data/tconstruct/recipes/compat/ceramics/porcelain/golden_bricks_slab.json
 2da137f9c624bd0efc2478d707b6b1e84339bd12 data/tconstruct/recipes/compat/create/andesite_alloy_iron.json
 625a5a017ecffbfe3f6d720295613b07559a16b9 data/tconstruct/recipes/compat/create/andesite_alloy_zinc.json
 9093d4bb7b18c5ddd44f1dd953be5cec1e3c3fa1 data/tconstruct/recipes/compat/necronium_bone.json
