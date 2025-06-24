@@ -86,15 +86,26 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                 .addByproduct(TinkerFluids.moltenGlass.result(FluidValues.GLASS_PANE))
                 .addByproduct(new FluidStack(Iron.getFluid(), 144 / 3))
                 .save(consumer, location(meltingFolder + "lantern"));
-        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.smelteryController), FluidOutput.fromFluid(Copper.getFluid(), 144 *4), GTMaterialHelper.findTemp(Copper), 3.5f)
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.searedFluidCannon), FluidOutput.fromFluid(Copper.getFluid(), 144 * 5), GTMaterialHelper.findTemp(Copper), 2.5f)
+                .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
+                .addByproduct(TinkerFluids.moltenGlass.result(FluidValues.GLASS_PANE * 5))
+                .save(consumer, location(meltingFolder + "fluid_cannon"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.smelteryController), FluidOutput.fromFluid(Copper.getFluid(), 144 * 4), GTMaterialHelper.findTemp(Copper), 3.5f)
                 .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
                 .save(consumer, location("smeltery/melting/metal/copper/smeltery_controller"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.copperGauge), FluidOutput.fromFluid(Copper.getFluid(), 144), GTMaterialHelper.findTemp(Copper), 1f)
+                .addByproduct(TinkerFluids.moltenGlass.result(FluidValues.GLASS_PANE / 5))
+                .save(consumer, location("smeltery/melting/metal/copper/gauge"));
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.searedDrain, TinkerSmeltery.searedChute), FluidOutput.fromFluid(Copper.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Copper), 2.5f)
                 .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
                 .save(consumer, location("smeltery/melting/metal/copper/smeltery_io"));
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.searedDuct), FluidOutput.fromFluid(Gold.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Gold), 2.5f)
                 .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
                 .save(consumer, location("smeltery/melting/metal/cobalt/seared_duct"));
+        MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.searedCastingTank), FluidOutput.fromFluid(Copper.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Copper), 2.5f)
+                .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
+                .addByproduct(TinkerFluids.moltenGlass.result(FluidValues.GLASS_BLOCK * 3))
+                .save(consumer, location(meltingFolder + "seared_casting_tank"));
     }
 
     private void addFoundryRecipes(Consumer<FinishedRecipe> consumer) {
@@ -103,6 +114,10 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                 .addByproduct(TinkerFluids.moltenQuartz.result(FluidValues.GEM_SHARD))
                 .addByproduct(FluidOutput.fromFluid(Iron.getFluid(), 16 * 3))
                 .save(consumer, location(meltingFolder + "lantern"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.scorchedFluidCannon), FluidOutput.fromFluid(Cobalt.getFluid(), 144 * 5), GTMaterialHelper.findTemp(Cobalt), 3.5f)
+                .addByproduct(TinkerFluids.scorchedStone.result(FluidValues.BRICK * 4))
+                .addByproduct(TinkerFluids.moltenQuartz.result(FluidValues.GEM * 5))
+                .save(consumer, location(meltingFolder + "fluid_cannon"));
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.scorchedDuct), FluidOutput.fromFluid(Gold.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Gold), 2.5f)
                 .addByproduct(TinkerFluids.scorchedStone.result(FluidValues.BRICK * 4))
                 .save(consumer, location("smeltery/melting/metal/cobalt/scorched_duct"));
@@ -114,8 +129,7 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                 .setCast(Items.BOOK, true)
                 .save(consumer, prefix(TinkerCommons.encyclopedia, "common/"));
         String folder = "smeltery/casting/";
-        ContainerFillingRecipeBuilder.tableRecipe(TinkerSmeltery.copperCan, 144)
-                .save(consumer, location(folder + "filling/copper_can"));
+        //do not touch copper cans
         ContainerFillingRecipeBuilder.basinRecipe(TinkerSmeltery.searedTank.get(TankType.INGOT_TANK), 144)
                 .save(consumer, location(folder + "filling/seared_ingot_tank"));
         ContainerFillingRecipeBuilder.basinRecipe(TinkerSmeltery.searedTank.get(TankType.INGOT_GAUGE), 144)
@@ -401,7 +415,7 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
         AlloyRecipeBuilder.alloy(TinkerFluids.moltenHepatizon, 144 * 2)
                 .addInput(Copper.getFluid(), 144 * 2)
                 .addInput(Cobalt.getFluid(), 144)
-                .addInput(TinkerFluids.moltenQuartz.ingredient(FluidValues.GEM * 4))
+                .addInput(TinkerFluids.moltenQuartz.ingredient(FluidValues.GEM))
                 .save(consumer, prefix(TinkerFluids.moltenHepatizon, folder));
 
         ConditionalRecipe.builder()

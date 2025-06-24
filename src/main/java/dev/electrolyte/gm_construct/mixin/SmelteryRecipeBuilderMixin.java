@@ -13,8 +13,8 @@ import slimeknights.tconstruct.library.data.recipe.SmelteryRecipeBuilder;
 @Mixin(SmelteryRecipeBuilder.class)
 public abstract class SmelteryRecipeBuilderMixin {
 
-    @Shadow private int baseUnit;
-    @Shadow private int damageUnit;
+    @Shadow(remap = false) private int baseUnit;
+    @Shadow(remap = false) private int damageUnit;
 
     @Inject(method = "metal", at = @At(value = "INVOKE", target = "Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;melting(FLjava/lang/String;Ljava/lang/String;FZZ)Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;"), remap = false)
     private void gmc$oldValue(CallbackInfoReturnable<SmelteryRecipeBuilder> cir) {
