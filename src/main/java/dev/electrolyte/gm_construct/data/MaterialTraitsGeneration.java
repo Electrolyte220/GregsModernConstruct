@@ -45,7 +45,7 @@ public class MaterialTraitsGeneration {
         SPECIAL_TRAITS.put(GTMaterials.SteelMagnetic.getName(), Pair.of(ModifierIds.reinforced, 1));
         SPECIAL_TRAITS.put(GTMaterials.RoseGold.getName(), Pair.of(ModifierIds.enhanced, 1));
         SPECIAL_TRAITS.put(GTMaterials.Bronze.getName(), Pair.of(ModifierIds.maintained, 1));
-        SPECIAL_TRAITS.put(GTMaterials.Invar.getName(), Pair.of(TinkerModifiers.invariant.getId(), 1));
+        SPECIAL_TRAITS.put(GTMaterials.Invar.getName(), Pair.of(ModifierIds.invariant, 1));
         SPECIAL_TRAITS.put(GTMaterials.Iron.getName(), Pair.of(TinkerModifiers.magnetic.getId(), 1));
         SPECIAL_TRAITS.put(GTMaterials.Steel.getName(), Pair.of(ModifierIds.ductile, 1));
     }
