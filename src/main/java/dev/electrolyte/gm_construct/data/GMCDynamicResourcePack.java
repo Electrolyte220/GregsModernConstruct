@@ -3,11 +3,13 @@ package dev.electrolyte.gm_construct.data;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.data.pack.GTDynamicPackContents;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -18,18 +20,17 @@ import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.resources.IoSupplier;
 
 import javax.annotation.Nullable;
-import java.io.ByteArrayInputStream;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class GMCDynamicResourcePack implements PackResources {
 
     private static final ObjectSet<String> CLIENT_DOMAINS = new ObjectOpenHashSet<>();
-    private static final ConcurrentMap<ResourceLocation, byte[]> DATA = new ConcurrentHashMap<>();
+    private static final GTDynamicPackContents DATA = new GTDynamicPackContents();
     private final String name;
 
     static {
@@ -41,19 +42,19 @@ public class GMCDynamicResourcePack implements PackResources {
     }
 
     public static void clearData() {
-        DATA.clear();
+        DATA.clearData();
     }
 
     public static void generateAllAssets() {
         JsonObject langObject = new JsonObject();
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialRenderInfoGeneration.INSTANCE.generateRenderInfo(GMConstruct.id(material.getName()), material);
-            DATA.put(data.getFirst(), data.getSecond());
+            DATA.addToData(data.getFirst(), data.getSecond());
 
             Pair<String, String> entry = LangGeneration.INSTANCE.generateLangEntry(material);
             langObject.addProperty(entry.getFirst(), entry.getSecond());
         }
-        DATA.put(new ResourceLocation(GMConstruct.MOD_ID, "lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
+        DATA.addToData(new ResourceLocation(GMConstruct.MOD_ID, "lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     @Nullable
@@ -66,7 +67,7 @@ public class GMCDynamicResourcePack implements PackResources {
     @Override
     public IoSupplier<InputStream> getResource(PackType packType, ResourceLocation resourceLocation) {
         if(packType == PackType.CLIENT_RESOURCES) {
-            if(DATA.containsKey(resourceLocation)) return () -> new ByteArrayInputStream(DATA.get(resourceLocation));
+            return DATA.getResource(resourceLocation);
         }
         return null;
     }
@@ -74,15 +75,7 @@ public class GMCDynamicResourcePack implements PackResources {
     @Override
     public void listResources(PackType packType, String namespace, String path, ResourceOutput resourceOutput) {
         if(packType == PackType.CLIENT_RESOURCES) {
-            if(!path.endsWith("/")) path += "/";
-            final String finalPath = path;
-            DATA.keySet().stream().filter(Objects::nonNull).filter(loc -> loc.getPath().startsWith(finalPath))
-                    .forEach(id -> {
-                        IoSupplier<InputStream> resource = this.getResource(packType, id);
-                        if(resource != null) {
-                            resourceOutput.accept(id, resource);
-                        }
-                    });
+            DATA.listResources(namespace, path, resourceOutput);
         }
     }
 
@@ -95,7 +88,7 @@ public class GMCDynamicResourcePack implements PackResources {
     @Override
     public <T> T getMetadataSection(MetadataSectionSerializer<T> metadataSectionSerializer) {
         if(metadataSectionSerializer == PackMetadataSection.TYPE) {
-            return (T) new PackMetadataSection(Component.literal("Gregtech Material's Construct Dynamic Assets"),
+            return (T) new PackMetadataSection(Component.literal("GMConstruct Dynamic Assets"),
                     SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
         }
         return null;
@@ -104,6 +97,11 @@ public class GMCDynamicResourcePack implements PackResources {
     @Override
     public String packId() {
         return name;
+    }
+
+    @Override
+    public boolean isBuiltin() {
+        return true;
     }
 
     @Override

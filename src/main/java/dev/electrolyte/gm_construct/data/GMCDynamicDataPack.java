@@ -2,6 +2,7 @@ package dev.electrolyte.gm_construct.data;
 
 import com.google.common.collect.Sets;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.data.pack.GTDynamicPackContents;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
 import dev.electrolyte.gm_construct.config.GMCConfig;
@@ -19,18 +20,14 @@ import net.minecraft.server.packs.resources.IoSupplier;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 @ParametersAreNonnullByDefault
 public class GMCDynamicDataPack implements PackResources {
 
     private static final ObjectSet<String> SERVER_DOMAINS = new ObjectOpenHashSet<>();
-    private static final Map<ResourceLocation, byte[]> DATA = new HashMap<>();
+    private static final GTDynamicPackContents DATA = new GTDynamicPackContents();
 
     private String name;
 
@@ -43,7 +40,7 @@ public class GMCDynamicDataPack implements PackResources {
     }
 
     public static void clearData() {
-        DATA.clear();
+        DATA.clearData();
     }
 
     @Override
@@ -54,9 +51,7 @@ public class GMCDynamicDataPack implements PackResources {
     @Override
     public @Nullable IoSupplier<InputStream> getResource(PackType pPackType, ResourceLocation pLocation) {
         if(pPackType == PackType.SERVER_DATA) {
-            var arr = DATA.get(pLocation);
-            if(arr != null) return () -> new ByteArrayInputStream(arr);
-            else return null;
+            return DATA.getResource(pLocation);
         } else {
             return null;
         }
@@ -66,34 +61,28 @@ public class GMCDynamicDataPack implements PackResources {
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(GMConstruct.materialId(material.getName()), material);
             if(!GMCConfig.IGNORED_DEFAULT_MAT_DEFS.get().contains(material.getName())) {
-                DATA.put(data.getFirst(), data.getSecond());
+                DATA.addToData(data.getFirst(), data.getSecond());
             }
 
             data = MaterialStatsGeneration.INSTANCE.generateMaterialStats(material);
             if(!GMCConfig.IGNORED_DEFAULT_MAT_STATS.get().contains(material.getName())) {
-                DATA.put(data.getFirst(), data.getSecond());
+                DATA.addToData(data.getFirst(), data.getSecond());
             }
 
             data = MaterialTraitsGeneration.INSTANCE.generateMaterialTraits(material);
             if(!GMCConfig.IGNORED_DEFAULT_MAT_TRAITS.get().contains(material.getName())) {
-                DATA.put(data.getFirst(), data.getSecond());
+                DATA.addToData(data.getFirst(), data.getSecond());
             }
         }
 
         Pair<ResourceLocation, byte[]> data = FluidTooltipGeneration.INSTANCE.generateMaterialFluidTooltips();
-        DATA.put(data.getFirst(), data.getSecond());
+        DATA.addToData(data.getFirst(), data.getSecond());
     }
 
     @Override
     public void listResources(PackType pPackType, String pNamespace, String pPath, ResourceOutput pResourceOutput) {
         if(pPackType == PackType.SERVER_DATA) {
-            if(!pPath.endsWith("/")) pPath += "/";
-            final String finalPath = pPath;
-            DATA.keySet().stream().filter(Objects::nonNull).filter(loc -> loc.getPath().startsWith(finalPath))
-                    .forEach(id -> {
-                        IoSupplier<InputStream> resource = this.getResource(pPackType, id);
-                        if(resource != null) pResourceOutput.accept(id, resource);
-                    });
+            DATA.listResources(pNamespace, pPath, pResourceOutput);
         }
     }
 
@@ -114,6 +103,11 @@ public class GMCDynamicDataPack implements PackResources {
     @Override
     public String packId() {
         return name;
+    }
+
+    @Override
+    public boolean isBuiltin() {
+        return true;
     }
 
     @Override
