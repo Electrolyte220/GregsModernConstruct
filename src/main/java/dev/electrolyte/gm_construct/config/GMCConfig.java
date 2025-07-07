@@ -20,9 +20,6 @@ public class GMCConfig {
     public static BooleanValue GENERATE_FLUID_SOLIDIFICATION_RECIPES;
 
     public static ConfigValue<List<String>> IGNORED_GT_MATERIALS;
-    public static ConfigValue<List<String>> IGNORED_DEFAULT_MAT_DEFS;
-    public static ConfigValue<List<String>> IGNORED_DEFAULT_MAT_STATS;
-    public static ConfigValue<List<String>> IGNORED_DEFAULT_MAT_TRAITS;
 
     public static DoubleValue GLOBAL_HEAD_DURABILITY_MODIFIER;
     public static DoubleValue GLOBAL_HEAD_MINING_SPEED_MODIFIER;
@@ -54,9 +51,6 @@ public class GMCConfig {
         IGNORED_GT_MATERIALS = COMMON_BUILDER.comment("Disable generating tinker's material information for the following GT materials.").define("ignoredGTMaterials", Lists.newArrayList(
                 "bronze", "cobalt", "copper", "diamond", "flint", "invar", "iron", "netherite", "polybenzimidazole", "polyethylene",
                 "polytetrafluoroethylene", "rose_gold", "rubber", "steel", "silicone_rubber", "styrene_butadiene_rubber", "wood"));
-        IGNORED_DEFAULT_MAT_DEFS = COMMON_BUILDER.comment("Disable generating default material definitions for the following GT materials.").define("ignoredGTMatDefs", Lists.newArrayList());
-        IGNORED_DEFAULT_MAT_STATS = COMMON_BUILDER.comment("Disable generating default material stats for the following GT materials.", "Any materials in this list will also ignore global modifiers.").define("ignoredGTMatStats", Lists.newArrayList());
-        IGNORED_DEFAULT_MAT_TRAITS = COMMON_BUILDER.comment("Disable generating default material traits for the following GT materials.").define("ignoredGTMatTraits", Lists.newArrayList());
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Configuration related to global modifiers.").push("Global Modifiers");

@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.data.pack.GTDynamicPackContents;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
-import dev.electrolyte.gm_construct.config.GMCConfig;
 import dev.electrolyte.gm_construct.helper.GTMaterialHelper;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
@@ -60,19 +59,11 @@ public class GMCDynamicDataPack implements PackResources {
     public static void generateAllMaterialData() {
         for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             Pair<ResourceLocation, byte[]> data = MaterialDataGeneration.INSTANCE.generateMaterialData(GMConstruct.materialId(material.getName()), material);
-            if(!GMCConfig.IGNORED_DEFAULT_MAT_DEFS.get().contains(material.getName())) {
-                DATA.addToData(data.getFirst(), data.getSecond());
-            }
-
+            DATA.addToData(data.getFirst(), data.getSecond());
             data = MaterialStatsGeneration.INSTANCE.generateMaterialStats(material);
-            if(!GMCConfig.IGNORED_DEFAULT_MAT_STATS.get().contains(material.getName())) {
-                DATA.addToData(data.getFirst(), data.getSecond());
-            }
-
+            DATA.addToData(data.getFirst(), data.getSecond());
             data = MaterialTraitsGeneration.INSTANCE.generateMaterialTraits(material);
-            if(!GMCConfig.IGNORED_DEFAULT_MAT_TRAITS.get().contains(material.getName())) {
-                DATA.addToData(data.getFirst(), data.getSecond());
-            }
+            DATA.addToData(data.getFirst(), data.getSecond());
         }
 
         Pair<ResourceLocation, byte[]> data = FluidTooltipGeneration.INSTANCE.generateMaterialFluidTooltips();
