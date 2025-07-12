@@ -2,8 +2,10 @@ package dev.electrolyte.gm_construct.data;
 
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
+import dev.electrolyte.gm_construct.config.GMCConfig;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.resources.ResourceLocation;
@@ -28,9 +30,19 @@ public class MaterialRenderInfoGeneration {
 
     private RenderInfoBuilder getBuilder(ResourceLocation texture, Material material) {
         RenderInfoBuilder builder = new RenderInfoBuilder().texture(texture);
-        MaterialSpriteInfo spriteInfo = new MaterialSpriteInfoBuilder(texture)
-                .meleeHarvest().ranged().fallbacks("metal")
-                .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, material.getMaterialARGB()).build()).build();
+        MaterialSpriteInfoBuilder spriteBuilder = new MaterialSpriteInfoBuilder(texture)
+                .fallbacks("metal")
+                .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, material.getMaterialARGB()).build());
+        if(material.hasProperty(PropertyKey.TOOL)) {
+            spriteBuilder.meleeHarvest().ranged();
+        }
+        if(material.hasProperty(PropertyKey.ARMOR)) {
+            spriteBuilder.armor();
+            if(GMCConfig.GENERATE_PLATE_SHIELD.get()) {
+                spriteBuilder.shieldCore();
+            }
+        }
+        MaterialSpriteInfo spriteInfo = spriteBuilder.build();
         builder.fallbacks(spriteInfo.getFallbacks());
         // colors are in AABBGGRR format, we want AARRGGBB, so swap red and blue
         int color = spriteInfo.getTransformer().getFallbackColor();
@@ -47,9 +59,6 @@ public class MaterialRenderInfoGeneration {
         @Setter
         @Nullable
         private ResourceLocation texture = null;
-        @Setter
-        @Nullable
-        private ResourceLocation parent = null;
         private String[] fallbacks = new String[0];
         private int color = -1;
         @Setter
@@ -57,43 +66,20 @@ public class MaterialRenderInfoGeneration {
         @Setter
         private MaterialGeneratorInfo generator = null;
 
-        /** Sets the color */
-        public RenderInfoBuilder color(int color) {
+        public void color(int color) {
             if ((color & 0xFF000000) == 0) {
                 color |= 0xFF000000;
             }
             this.color = color;
-            return this;
         }
 
-        /** Sets the parent to the given material ID */
-        public RenderInfoBuilder parentMaterial(MaterialVariantId material) {
-            return parent(material.getLocation('/'));
-        }
-
-        /** Sets the fallback names */
-        public RenderInfoBuilder fallbacks(String... fallbacks) {
+        public void fallbacks(String... fallbacks) {
             this.fallbacks = fallbacks;
-            return this;
         }
 
-        /** Sets the texture from another material variant */
-        public RenderInfoBuilder materialTexture(MaterialVariantId variantId) {
-            return texture(variantId.getLocation('_'));
-        }
-
-        /** Tells the builder to skip the unique texture for this material */
-        public RenderInfoBuilder skipUniqueTexture() {
-            return texture(null);
-        }
-
-        /** Builds the material */
         @CheckReturnValue
         public JsonObject build(MaterialVariantId id) {
             JsonObject json = new JsonObject();
-            if (parent != null) {
-                json.addProperty("parent", parent.toString());
-            }
             MaterialRenderInfo.LOADABLE.serialize(new MaterialRenderInfo(id, texture, fallbacks, color, luminosity), json);
             if (generator != null) {
                 json.add("generator", MaterialGeneratorInfo.LOADABLE.serialize(generator));

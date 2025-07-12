@@ -2,10 +2,14 @@ package dev.electrolyte.gm_construct.data;
 
 import com.google.gson.JsonElement;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.ArmorProperty.ArmorMaterial;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
 import dev.electrolyte.gm_construct.config.GMCConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Tiers;
 import slimeknights.tconstruct.library.materials.definition.MaterialManager;
 import slimeknights.tconstruct.library.materials.json.MaterialStatJson;
@@ -14,6 +18,7 @@ import slimeknights.tconstruct.library.materials.stats.MaterialStatType;
 import slimeknights.tconstruct.tools.stats.*;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +27,19 @@ public class MaterialStatsGeneration {
     protected static final MaterialStatsGeneration INSTANCE = new MaterialStatsGeneration();
 
     protected Pair<ResourceLocation, byte[]> generateMaterialStats(Material material) {
-        MaterialStatJson json = convertMaterialStats(List.of(
+        List<IMaterialStats> stats = new ArrayList<>();
+        if(material.hasProperty(PropertyKey.TOOL)) {
+            stats.addAll(generateToolStats(material));
+        }
+        if(material.hasProperty(PropertyKey.ARMOR)) {
+            stats.addAll(generateArmorStats(material));
+        }
+        MaterialStatJson json = convertMaterialStats(stats);
+        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/stats/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+    }
+
+    private List<IMaterialStats> generateToolStats(Material material) {
+        return List.of(
                 new HeadMaterialStats(
                         (int) (material.getToolTier().getUses() * GMCConfig.GLOBAL_HEAD_DURABILITY_MODIFIER.get()),
                         (float) (material.getToolTier().getSpeed() * GMCConfig.GLOBAL_HEAD_MINING_SPEED_MODIFIER.get()),
@@ -44,8 +61,30 @@ public class MaterialStatsGeneration {
                         .attackSpeed((float) (1 * GMCConfig.GLOBAL_HANDLE_ATTACK_SPEED_MODIFIER.get()))
                         .build(),
                 StatlessMaterialStats.BINDING
-        ));
-        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/stats/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        );
+    }
+
+    private List<IMaterialStats> generateArmorStats(Material material) {
+        ArmorMaterial armorMat = material.getProperty(PropertyKey.ARMOR).getArmorMaterial();
+        List<IMaterialStats> stats = new ArrayList<>();
+        for(ArmorItem.Type slotType : ArmorItem.Type.values()) {
+            PlatingMaterialStats.Builder armorBuilder = PlatingMaterialStats.builder()
+                    .durabilityFactor((float) (armorMat.getDurabilityForType(slotType) * GMCConfig.GLOBAL_ARMOR_DURABILITY_MODIFIER.get()))
+                    .armor(armorMat.getDefenseForType(Type.BOOTS), armorMat.getDefenseForType(Type.LEGGINGS), armorMat.getDefenseForType(Type.CHESTPLATE), armorMat.getDefenseForType(Type.HELMET))
+                    .toughness(armorMat.getToughness())
+                    .knockbackResistance(armorMat.getKnockbackResistance());
+            PlatingMaterialStats matStats = armorBuilder.build(slotType);
+            stats.add(matStats);
+        }
+        if(GMCConfig.GENERATE_PLATE_SHIELD.get()) {
+            stats.add(PlatingMaterialStats.builder()
+                    .shieldDurability((int) (armorMat.getDurabilityForType(Type.CHESTPLATE) * GMCConfig.GLOBAL_SHIELD_DURABILITY_MODIFIER.get()))
+                    .toughness(armorMat.getToughness())
+                    .knockbackResistance(armorMat.getKnockbackResistance())
+                    .buildShield());
+        }
+        stats.add(StatlessMaterialStats.MAILLE);
+        return stats;
     }
 
     private MaterialStatJson convertMaterialStats(List<IMaterialStats> stats) {
