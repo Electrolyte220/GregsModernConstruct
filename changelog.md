@@ -1,0 +1,3 @@
+- Update to GT 7.0.0
+- Remove redundant config options
+- Add ability to create armor/shields via ArmorProperty

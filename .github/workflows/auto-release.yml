@@ -1,0 +1,61 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: 'main'
+    - uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Get Version
+      uses: BrycensRanch/read-properties-action@v1
+      id: version
+      with:
+        file: gradle.properties
+        property: mod_version
+    - name: Build
+      uses: gradle/gradle-build-action@v2.4.2
+      with:
+          cache-disabled: true
+          arguments: build
+    - name: Upload Release to Github, Curseforge & Modrinth
+      uses: Kir-Antipov/mc-publish@v3.3
+      with:
+        name: Greg's Modern Construct ${{ steps.version.outputs.mod_version }}
+        version: ${{ steps.version.outputs.mod_version }}
+        changelog-file: changelog.md
+
+        curseforge-id: 1178557
+        curseforge-token: ${{ secrets.CF_TOKEN }}
+
+        modrinth-id: EbCxTCC6
+        modrinth-featured: true
+        modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+        version-type: release
+
+        loaders: |
+          forge
+          neoforge
+
+        game-versions: |
+          1.20.1
+
+        dependencies: |
+          tinkers-construct(required)
+          gregtechceu-modern(required)
+
+        files: |
+          build/libs/*[0-9].jar
