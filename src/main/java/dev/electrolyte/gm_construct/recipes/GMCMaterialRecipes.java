@@ -41,7 +41,7 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
             metal(provider, material.getName(), fluid.get(), GTMaterialHelper.findTemp(smeltsIntoMaterial)).optional().ore().metal().dust().plate().gear().coin().rod().wire().sheetmetal().geore();
         }
 
-        for(Material material : GTMaterialHelper.getRegisteredMaterials()) {
+        for(Material material : GTMaterialHelper.REGISTERED_TOOL_MATERIALS) {
             MaterialId materialId = GMConstruct.materialId(material.getName());
             metalMaterialRecipe(provider, materialId, "tools/materials/", material.getName(), false); //repairing via material nugget/ingot/block in tool station
 

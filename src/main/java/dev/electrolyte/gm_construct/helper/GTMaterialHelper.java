@@ -23,7 +23,7 @@ public class GTMaterialHelper {
                 if(m.getName().equals(s))
                     return false;
             }
-            return m.hasProperty(PropertyKey.TOOL);
+            return m.hasProperty(PropertyKey.TOOL) || m.hasProperty(PropertyKey.ARMOR);
         }).collect(Collectors.toCollection(HashSet::new));
     }
 
