@@ -30,9 +30,13 @@ public class MaterialRenderInfoGeneration {
 
     private RenderInfoBuilder getBuilder(ResourceLocation texture, Material material) {
         RenderInfoBuilder builder = new RenderInfoBuilder().texture(texture);
+        GreyToColorMapping.Builder colorBuilder = GreyToColorMapping.builderFromBlack().addARGB(178, material.getMaterialARGB());
+        if(material.getMaterialSecondaryARGB() != 0xff000000) {
+            colorBuilder.addARGB(255, material.getMaterialSecondaryARGB());
+        }
         MaterialSpriteInfoBuilder spriteBuilder = new MaterialSpriteInfoBuilder(texture)
                 .fallbacks("metal")
-                .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, material.getMaterialARGB()).build());
+                .colorMapper(colorBuilder.build());
         if(material.hasProperty(PropertyKey.TOOL)) {
             spriteBuilder.meleeHarvest().ranged();
         }
