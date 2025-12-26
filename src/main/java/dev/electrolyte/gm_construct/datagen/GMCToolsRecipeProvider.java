@@ -1,6 +1,7 @@
 package dev.electrolyte.gm_construct.datagen;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CompoundIngredient;
@@ -8,6 +9,7 @@ import net.minecraftforge.fluids.FluidStack;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.registration.CastItemObject;
+import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 import slimeknights.tconstruct.library.data.recipe.IToolRecipeHelper;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -22,9 +24,14 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Gold;
 public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecipeHelper {
 
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+        addPartRecipes(consumer);
+    }
+
+    private void addPartRecipes(Consumer<FinishedRecipe> consumer) {
         String folder = "smeltery/casts/";
 
         this.castCreation(consumer, TinkerToolParts.repairKit, TinkerSmeltery.repairKitCast, folder);
+        this.castCreation(consumer, Ingredient.of(TinkerToolParts.fakeIngot.get()), TinkerSmeltery.ingotCast, folder, id(TinkerToolParts.fakeIngot.get()).getPath());
 
         this.castCreation(consumer, TinkerToolParts.pickHead,     TinkerSmeltery.pickHeadCast,     folder);
         this.castCreation(consumer, TinkerToolParts.hammerHead,   TinkerSmeltery.hammerHeadCast,   folder);
@@ -34,6 +41,11 @@ public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecip
         this.castCreation(consumer, TinkerToolParts.broadBlade,   TinkerSmeltery.broadBladeCast,   folder);
         this.castCreation(consumer, TinkerToolParts.bowLimb,      TinkerSmeltery.bowLimbCast,      folder);
         this.castCreation(consumer, TinkerToolParts.bowGrip,      TinkerSmeltery.bowGripCast,      folder);
+
+        ItemCastingRecipeBuilder.tableRecipe(TinkerSmeltery.arrowCast)
+                .setFluidAndTime(TinkerFluids.moltenGold, 144)
+                .setCast(ItemTags.ARROWS, true)
+                .save(consumer, location(folder + "gold/arrow"));
 
         this.castCreation(consumer, TinkerToolParts.toolBinding,  TinkerSmeltery.toolBindingCast,  folder);
         this.castCreation(consumer, TinkerToolParts.toughBinding, TinkerSmeltery.toughBindingCast, folder);
@@ -47,6 +59,7 @@ public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecip
         this.castCreation(consumer, CompoundIngredient.of(Ingredient.of(TinkerSmeltery.dummyPlating.get(ArmorItem.Type.LEGGINGS)), MaterialIngredient.of(TinkerToolParts.plating.get(ArmorItem.Type.LEGGINGS))),     TinkerSmeltery.leggingsPlatingCast,   folder, id(TinkerToolParts.plating.get(ArmorItem.Type.LEGGINGS)).getPath());
         this.castCreation(consumer, CompoundIngredient.of(Ingredient.of(TinkerSmeltery.dummyPlating.get(ArmorItem.Type.BOOTS)), MaterialIngredient.of(TinkerToolParts.plating.get(ArmorItem.Type.BOOTS))),           TinkerSmeltery.bootsPlatingCast,      folder, id(TinkerToolParts.plating.get(ArmorItem.Type.BOOTS)).getPath());
         this.castCreation(consumer, TinkerToolParts.maille, TinkerSmeltery.mailleCast, folder);
+
     }
 
     @Override

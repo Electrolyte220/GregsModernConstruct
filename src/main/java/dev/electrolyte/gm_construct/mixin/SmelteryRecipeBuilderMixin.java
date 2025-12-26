@@ -1,8 +1,9 @@
 package dev.electrolyte.gm_construct.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.resources.ResourceLocation;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +16,9 @@ public abstract class SmelteryRecipeBuilderMixin {
 
     @Shadow(remap = false) private int baseUnit;
     @Shadow(remap = false) private int damageUnit;
+    @Shadow @Final private ResourceLocation name;
+    @Shadow(remap = false) private void itemMelting(float scale, String output, float factor, ResourceLocation itemName, boolean damagable) {throw new IllegalStateException("Mixin did not apply!");}
+
 
     @Inject(method = "metal", at = @At(value = "INVOKE", target = "Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;melting(FLjava/lang/String;Ljava/lang/String;FZZ)Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;"), remap = false)
     private void gmc$oldValue(CallbackInfoReturnable<SmelteryRecipeBuilder> cir) {
@@ -22,13 +26,10 @@ public abstract class SmelteryRecipeBuilderMixin {
         damageUnit = 16;
     }
 
-    @WrapOperation(method = "oreberry", at = @At(value = "INVOKE", target = "Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;itemMelting(ILjava/lang/String;FLnet/minecraft/resources/ResourceLocation;Z)V"), remap = false)
-    private void gmc$oldOreberry(SmelteryRecipeBuilder instance, int amount, String output, float factor, ResourceLocation itemName, boolean damagable, Operation<Void> original) {
-        original.call(instance, 16, output, factor, itemName, damagable);
-    }
-
-    @WrapOperation(method = "metal", at = @At(value = "INVOKE", target = "Lslimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder;basinCasting(ILjava/lang/String;Ljava/lang/String;Z)V"), remap = false)
-    private void gmc$BasinCasting(SmelteryRecipeBuilder instance, int amount, String output, String tagName, boolean forceOptional, Operation<Void> original) {
-        original.call(instance, 1296, output, tagName, forceOptional);
+    @WrapMethod(method = "oreberry", remap = false)
+    private SmelteryRecipeBuilder gmc$oldOreberry(Operation<SmelteryRecipeBuilder> original) {
+        baseUnit = 144;
+        itemMelting(1 / 9f, "oreberry", 1 / 3f, new ResourceLocation("oreberriesreplanted", name.getPath() + "_oreberry"), false);
+        return ((SmelteryRecipeBuilder) (Object) this);
     }
 }

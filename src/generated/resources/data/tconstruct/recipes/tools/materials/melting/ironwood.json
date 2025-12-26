@@ -1,0 +1,21 @@
+{
+  "type": "tconstruct:material_melting",
+  "byproducts": [
+    {
+      "amount": 16,
+      "fluid": "gtceu:gold"
+    }
+  ],
+  "conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "forge:ingots/ironwood"
+    }
+  ],
+  "input": "tconstruct:ironwood",
+  "result": {
+    "amount": 144,
+    "fluid": "gtceu:iron"
+  },
+  "temperature": 1511
+}

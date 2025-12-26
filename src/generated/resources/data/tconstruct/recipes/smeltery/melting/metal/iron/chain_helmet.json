@@ -3,7 +3,8 @@
   "byproducts": [
     {
       "amount": 240,
-      "fluid": "gtceu:steel"
+      "fluid": "gtceu:steel",
+      "unit_size": 16
     }
   ],
   "ingredient": {

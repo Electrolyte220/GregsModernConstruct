@@ -1,0 +1,24 @@
+{
+  "type": "tconstruct:melting",
+  "byproducts": [
+    {
+      "amount": 144,
+      "fluid": "gtceu:gold"
+    }
+  ],
+  "conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "forge:storage_blocks/ironwood"
+    }
+  ],
+  "ingredient": {
+    "tag": "forge:storage_blocks/ironwood"
+  },
+  "result": {
+    "amount": 810,
+    "fluid": "gtceu:iron"
+  },
+  "temperature": 1511,
+  "time": 242
+}

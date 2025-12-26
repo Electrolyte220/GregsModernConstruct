@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "tconstruct:fake_ingot"
+  },
+  "cast_consumed": true,
+  "cooling_time": 85,
+  "fluid": {
+    "amount": 144,
+    "fluid": "gtceu:gold"
+  },
+  "result": "tconstruct:ingot_cast",
+  "switch_slots": true
+}

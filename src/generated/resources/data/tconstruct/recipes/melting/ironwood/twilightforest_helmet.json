@@ -1,0 +1,25 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "byproducts": [
+    {
+      "amount": 80,
+      "fluid": "gtceu:gold"
+    }
+  ],
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "twilightforest:ironwood_helmet"
+    }
+  ],
+  "ingredient": {
+    "item": "twilightforest:ironwood_helmet"
+  },
+  "result": {
+    "amount": 450,
+    "fluid": "gtceu:iron",
+    "unit_size": 10
+  },
+  "temperature": 1511,
+  "time": 180
+}

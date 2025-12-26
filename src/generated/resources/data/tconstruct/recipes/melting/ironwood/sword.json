@@ -1,0 +1,25 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "byproducts": [
+    {
+      "amount": 32,
+      "fluid": "gtceu:gold"
+    }
+  ],
+  "conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "tconstruct:melting/ironwood/tools_costing_2"
+    }
+  ],
+  "ingredient": {
+    "tag": "tconstruct:melting/ironwood/tools_costing_2"
+  },
+  "result": {
+    "amount": 180,
+    "fluid": "gtceu:iron",
+    "unit_size": 10
+  },
+  "temperature": 1511,
+  "time": 114
+}

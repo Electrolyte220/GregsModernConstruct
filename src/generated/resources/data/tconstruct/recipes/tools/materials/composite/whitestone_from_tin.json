@@ -11,6 +11,6 @@
     "tag": "forge:tin"
   },
   "input": "tconstruct:rock",
-  "output": "tconstruct:whitestone#tin",
+  "output": "tconstruct:whitestone#composite",
   "temperature": 225
 }

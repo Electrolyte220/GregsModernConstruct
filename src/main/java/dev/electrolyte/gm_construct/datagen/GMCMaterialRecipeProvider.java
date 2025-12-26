@@ -16,6 +16,7 @@ import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 import slimeknights.tconstruct.library.data.recipe.ISmelteryRecipeHelper;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.material.MaterialFluidRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.MaterialMeltingRecipeBuilder;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
@@ -48,25 +49,44 @@ public class GMCMaterialRecipeProvider implements IMaterialRecipeHelper, ICondit
         materialMeltingCasting(consumer, MaterialIds.queensSlime, TinkerFluids.moltenQueensSlime, folder);
         materialMeltingCasting(consumer, MaterialIds.hepatizon,   TinkerFluids.moltenHepatizon,   folder);
         materialMeltingCasting(consumer, MaterialIds.manyullyn,   TinkerFluids.moltenManyullyn,   folder);
+        materialMeltingCasting(consumer, MaterialIds.knightmetal, TinkerFluids.moltenKnightmetal, folder);
         materialMeltingComposite(consumer, MaterialIds.leather, MaterialIds.ancientHide, TinkerFluids.moltenDebris, 144, folder);
 
+        materialMelting(consumer, MaterialIds.ancient, TinkerFluids.moltenDebris, 144, folder);
+
         compatMeltingCasting(consumer, MaterialIds.osmium,   Osmium,   folder);
-        compatMeltingCasting(consumer, MaterialIds.tungsten, Tungsten, folder);
-        compatMeltingCasting(consumer, MaterialIds.platinum, Platinum, folder);
         compatMeltingCasting(consumer, MaterialIds.silver,   Silver,   folder);
         compatMeltingCasting(consumer, MaterialIds.lead,     Lead,     folder);
         compatMeltingCasting(consumer, MaterialIds.aluminum, TinkerFluids.moltenAluminum, folder);
-        materialComposite(withCondition(consumer, tagCondition("ingots/aluminum")), MaterialIds.rock, MaterialIds.whitestoneAluminum, TinkerFluids.moltenAluminum, 144, folder, "whitestone_from_aluminum");
-        materialComposite(withCondition(consumer, tagCondition("ingots/tin")),      MaterialIds.rock, MaterialIds.whitestoneTin,      Tin,      144, folder, "whitestone_from_tin");
-        materialComposite(withCondition(consumer, tagCondition("ingots/zinc")),     MaterialIds.rock, MaterialIds.whitestoneZinc,     Zinc,     144, folder, "whitestone_from_zinc");
+
+        whitestoneCasting(consumer, TinkerFluids.moltenAluminum, folder);
+        whitestoneCasting(consumer, Tin,      folder);
+        whitestoneCasting(consumer, Zinc,     folder);
+        whitestoneCasting(consumer, Nickel,   folder);
+        whitestoneCasting(consumer, Chromium, folder);
+        whitestoneCasting(consumer, TinkerFluids.moltenCadmium,  folder);
+
+        MaterialMeltingRecipeBuilder.material(MaterialIds.ironwood, Iron.getFluid(), 144)
+                .addByproduct(Gold.getFluid(16))
+                .save(withCondition(consumer, tagCondition("ingots/ironwood")), location(folder + "melting/ironwood"));
 
         compatMeltingCasting(consumer, MaterialIds.constantan,     TinkerFluids.moltenConstantan, "nickel", folder);
         compatMeltingCasting(consumer, MaterialIds.invar,          Invar,      "nickel", folder);
         compatMeltingCasting(consumer, MaterialIds.electrum,       Electrum,   "silver", folder);
         compatMeltingCasting(consumer, MaterialIds.bronze,         Bronze,     "tin", folder);
+        compatMeltingCasting(consumer, MaterialIds.steeleaf,   TinkerFluids.moltenSteeleaf, folder);
+        materialMeltingCasting(
+                withCondition(consumer, new OrCondition(tagCondition("ingots/pewter"), tagCondition("ingots/tin"), tagCondition("ingots/lead"))),
+                MaterialIds.pewter,TinkerFluids.moltenPewter, folder);
         materialMeltingComposite(withCondition(consumer, tagCondition("ingots/uranium")), MaterialIds.necroticBone, MaterialIds.necronium, Uranium238, 144, folder);
         materialMeltingComposite(withCondition(consumer, new OrCondition(tagCondition("ingots/brass"), tagCondition("ingots/zinc"))),
                 MaterialIds.slimewood, MaterialIds.platedSlimewood, Brass, 144, folder);
+
+        Consumer<FinishedRecipe> fieryConsumer = withCondition(consumer, tagCondition("ingots/fiery"));
+        materialComposite(fieryConsumer, MaterialIds.iron, MaterialIds.fiery, TinkerFluids.fieryLiquid, FluidValues.BOTTLE, folder);
+        MaterialMeltingRecipeBuilder.material(MaterialIds.fiery, TinkerFluids.fieryLiquid, FluidValues.BOTTLE)
+                .addByproduct(Iron.getFluid(144))
+                .save(fieryConsumer, location(folder + "melting/fiery"));
 
         materialMeltingCasting(consumer, MaterialIds.gold, Gold, folder);
     }
@@ -114,6 +134,16 @@ public class GMCMaterialRecipeProvider implements IMaterialRecipeHelper, ICondit
         MaterialMeltingRecipeBuilder.material(output, GTMaterialHelper.findTemp(material), new FluidStack(material.getFluid(), amount))
                 .save(consumer, location(folder + "melting/" + output.getLocation('_').getPath()));
         materialComposite(consumer, input, output, material, amount, folder);
+    }
+
+    private void whitestoneCasting(Consumer<FinishedRecipe> consumer, FluidObject<?> fluid, String folder) {
+        String name = TinkerFluids.withoutMolten(fluid);
+        materialComposite(withCondition(consumer, tagCondition("ingots/" + name)), MaterialIds.rock, MaterialIds.whitestoneComposite, fluid, 144, folder, "whitestone_from_" + name);
+    }
+
+    private void whitestoneCasting(Consumer<FinishedRecipe> consumer, Material fluid, String folder) {
+        String name = fluid.getName();
+        materialComposite(withCondition(consumer, tagCondition("ingots/" + name)), MaterialIds.rock, MaterialIds.whitestoneComposite, fluid, 144, folder, "whitestone_from_" + name);
     }
 
     @Override

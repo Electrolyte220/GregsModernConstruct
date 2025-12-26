@@ -1,0 +1,25 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "byproducts": [
+    {
+      "amount": 128,
+      "fluid": "gtceu:gold"
+    }
+  ],
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "twilightforest:ironwood_chestplate"
+    }
+  ],
+  "ingredient": {
+    "item": "twilightforest:ironwood_chestplate"
+  },
+  "result": {
+    "amount": 720,
+    "fluid": "gtceu:iron",
+    "unit_size": 10
+  },
+  "temperature": 1511,
+  "time": 228
+}

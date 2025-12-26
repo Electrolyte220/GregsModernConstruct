@@ -19,6 +19,7 @@ public enum GMCByproduct implements IByproduct {
     IRON      (false, Iron.getFluid()),
     GOLD      (false, Gold.getFluid()),
     SMALL_GOLD("gold", false, Gold.getFluid(), 16 * 3, OreRateType.METAL),
+    TINY_GOLD("gold", false, Gold.getFluid(), 16, OreRateType.NONE),
     COBALT    (false, Cobalt.getFluid()),
     STEEL     (false, Steel.getFluid()),
     DEBRIS    ("netherite_scrap", false, TinkerFluids.moltenDebris.get(), 144, OreRateType.METAL),
@@ -27,7 +28,8 @@ public enum GMCByproduct implements IByproduct {
     SILVER  (false, Silver.getFluid()),
     NICKEL  (false, Nickel.getFluid()),
     LEAD    (false, Lead.getFluid()),
-    PLATINUM(false, Platinum.getFluid());
+    PLATINUM(false, Platinum.getFluid()),
+    CHROMIUM(false, Chromium.getFluid());
 
     private final String name;
     private final boolean alwaysPresent;

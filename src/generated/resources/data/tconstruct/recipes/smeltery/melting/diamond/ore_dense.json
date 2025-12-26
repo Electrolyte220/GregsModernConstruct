@@ -1,0 +1,78 @@
+{
+  "type": "forge:conditional",
+  "conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "match": [
+        "forge:ores/diamond",
+        "forge:ore_rates/dense"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/netherite_scrap"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 432,
+            "fluid": "tconstruct:molten_debris",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "type": "forge:intersection",
+          "children": [
+            {
+              "tag": "forge:ores/diamond"
+            },
+            {
+              "tag": "forge:ore_rates/dense"
+            }
+          ]
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 300,
+          "fluid": "tconstruct:molten_diamond"
+        },
+        "temperature": 1450,
+        "time": 355
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "type": "forge:intersection",
+          "children": [
+            {
+              "tag": "forge:ores/diamond"
+            },
+            {
+              "tag": "forge:ore_rates/dense"
+            }
+          ]
+        },
+        "rate": "gem",
+        "result": {
+          "amount": 300,
+          "fluid": "tconstruct:molten_diamond"
+        },
+        "temperature": 1450,
+        "time": 355
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "byproducts": [
+          {
+            "amount": 1296,
+            "fluid": "gtceu:iron",
+            "rate": "metal"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:storage_blocks/raw_steel"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 1296,
+          "fluid": "gtceu:steel"
+        },
+        "temperature": 950,
+        "time": 389
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:ore_melting",
+        "ingredient": {
+          "tag": "forge:storage_blocks/raw_steel"
+        },
+        "rate": "metal",
+        "result": {
+          "amount": 1296,
+          "fluid": "gtceu:steel"
+        },
+        "temperature": 950,
+        "time": 389
+      }
+    }
+  ]
+}

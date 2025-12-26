@@ -2,15 +2,55 @@
   "type": "forge:conditional",
   "conditions": [
     {
-      "type": "mantle:tag_filled",
-      "tag": "forge:ingots/pewter"
-    },
-    {
-      "type": "mantle:tag_filled",
-      "tag": "forge:ingots/lead"
+      "type": "forge:or",
+      "values": [
+        {
+          "type": "tconstruct:config",
+          "prop": "allow_ingotless_alloys"
+        },
+        {
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/pewter"
+        }
+      ]
     }
   ],
   "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "mantle:tag_filled",
+              "tag": "forge:ingots/lead"
+            },
+            {
+              "type": "mantle:tag_filled",
+              "tag": "forge:ingots/tin"
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:alloy",
+        "inputs": [
+          {
+            "amount": 432,
+            "fluid": "gtceu:tin"
+          },
+          {
+            "amount": 144,
+            "fluid": "gtceu:lead"
+          }
+        ],
+        "result": {
+          "amount": 576,
+          "tag": "forge:molten_pewter"
+        },
+        "temperature": 400
+      }
+    },
     {
       "conditions": [
         {
@@ -22,16 +62,16 @@
         "type": "tconstruct:alloy",
         "inputs": [
           {
-            "amount": 288,
-            "fluid": "gtceu:tin"
+            "amount": 144,
+            "fluid": "gtceu:iron"
           },
           {
-            "amount": 144,
-            "fluid": "gtceu:lead"
+            "amount": 432,
+            "fluid": "gtceu:tin"
           }
         ],
         "result": {
-          "amount": 432,
+          "amount": 576,
           "tag": "forge:molten_pewter"
         },
         "temperature": 400
@@ -40,7 +80,8 @@
     {
       "conditions": [
         {
-          "type": "forge:true"
+          "type": "mantle:tag_filled",
+          "tag": "forge:ingots/lead"
         }
       ],
       "recipe": {

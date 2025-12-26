@@ -1,1 +1,1 @@
-- Potential fix for certain materials not appearing correctly on tools/armor
+- Update Tinker's Construct to 3.11.0.148
