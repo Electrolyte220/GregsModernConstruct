@@ -25,7 +25,7 @@ public class MaterialRenderInfoGeneration {
 
     protected Pair<ResourceLocation, byte[]> generateRenderInfo(ResourceLocation texture, Material material) {
         JsonObject json = getBuilder(texture, material).build(GMConstruct.materialId(material.getName()));
-        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/" + material.getName() + ".json"), json.toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(GMConstruct.id("tinkering/materials/" + material.getName() + ".json"), json.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     private RenderInfoBuilder getBuilder(ResourceLocation texture, Material material) {

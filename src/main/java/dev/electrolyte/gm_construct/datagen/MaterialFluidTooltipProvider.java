@@ -16,9 +16,9 @@ public class MaterialFluidTooltipProvider extends AbstractFluidTooltipProvider {
     @Override
     protected void addFluids() {
         add("metal", ForgeRegistries.FLUIDS.tags().createTagKey(GMConstruct.id("tooltips/metal")))
-                .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.block")), 1296)
-                .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.ingot")), 144)
-                .addUnitRaw(Util.makeDescriptionId("gui", new ResourceLocation(TConstruct.MOD_ID, "fluid.nugget")), 16);
+                .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.block")), 1296)
+                .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.ingot")), 144)
+                .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.nugget")), 16);
         addRedirect(new ResourceLocation(TConstruct.MOD_ID,"metal"), GMConstruct.id("metal"));
     }
 

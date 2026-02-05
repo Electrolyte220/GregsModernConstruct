@@ -70,7 +70,7 @@ public class GMCMaterialRecipes implements IMaterialRecipeHelper, ISmelteryRecip
         ResourceLocation tagLoc = fluidTag.location();
         String fluidName = tagLoc.getPath();
         Fluid output;
-        ResourceLocation fluidLoc = new ResourceLocation(TConstruct.MOD_ID, "molten_" + fluidName);
+        ResourceLocation fluidLoc = TConstruct.getResource("molten_" + fluidName);
         if(material.hasProperty(PropertyKey.FLUID)) {
             output = material.getFluid();
         }

@@ -35,7 +35,7 @@ public class MaterialStatsGeneration {
             stats.addAll(generateArmorStats(material));
         }
         MaterialStatJson json = convertMaterialStats(stats);
-        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/stats/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(GMConstruct.id("tinkering/materials/stats/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 
     private List<IMaterialStats> generateToolStats(Material material) {

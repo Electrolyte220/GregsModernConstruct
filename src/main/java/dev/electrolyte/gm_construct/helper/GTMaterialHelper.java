@@ -28,7 +28,7 @@ public class GTMaterialHelper {
     }
 
     public static int findTemp(Material material) {
-        ResourceLocation fluidLoc = new ResourceLocation(TConstruct.MOD_ID, "molten_" + material.getName());
+        ResourceLocation fluidLoc = TConstruct.getResource("molten_" + material.getName());
         if(ForgeRegistries.FLUIDS.containsKey(fluidLoc)) {
             return ForgeRegistries.FLUIDS.getValue(fluidLoc).getFluidType().getTemperature() - 300;
         }

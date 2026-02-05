@@ -104,19 +104,18 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                 .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
                 .save(consumer, location("smeltery/melting/metal/cobalt/seared_duct"));
         //todo: check if still exists
-        /*MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.searedCastingTank), FluidOutput.fromFluid(Copper.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Copper), 2.5f)
+        MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.searedCastingTank), FluidOutput.fromFluid(Copper.getFluid(), 144 * 2), GTMaterialHelper.findTemp(Copper), 2.5f)
                 .addByproduct(TinkerFluids.searedStone.result(FluidValues.BRICK * 4))
                 .addByproduct(TinkerFluids.moltenGlass.result(FluidValues.GLASS_BLOCK * 3))
-                .save(consumer, location(meltingFolder + "seared_casting_tank"));*/
+                .save(consumer, location(meltingFolder + "seared_casting_tank"));
     }
 
     private void addFoundryRecipes(Consumer<FinishedRecipe> consumer) {
         String meltingFolder = "smeltery/melting/scorched/";
-        //todo:check
-        /*MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.scorchedLantern), TinkerFluids.scorchedStone, FluidValues.BRICK * 2, 1.0f)
+        MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.scorchedLantern), TinkerFluids.scorchedStone, FluidValues.BRICK * 2, 1.0f)
                 .addByproduct(TinkerFluids.moltenQuartz.result(FluidValues.GEM_SHARD))
                 .addByproduct(FluidOutput.fromFluid(Iron.getFluid(), 16 * 3))
-                .save(consumer, location(meltingFolder + "lantern"));*/
+                .save(consumer, location(meltingFolder + "lantern"));
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.scorchedFluidCannon), FluidOutput.fromFluid(Cobalt.getFluid(), 144 * 5), GTMaterialHelper.findTemp(Cobalt), 3.5f)
                 .addByproduct(TinkerFluids.scorchedStone.result(FluidValues.BRICK * 4))
                 .addByproduct(TinkerFluids.moltenQuartz.result(FluidValues.GEM * 5))

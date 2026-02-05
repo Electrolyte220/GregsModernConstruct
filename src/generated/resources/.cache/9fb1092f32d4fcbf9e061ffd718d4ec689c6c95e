@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-25T21:10:52.972033255	Recipes
+// 1.20.1	2026-02-04T22:19:00.345491613	Recipes
 52479bf5a3ab63da04d73b8eebd3ed39f1a5d2f9 data/tconstruct/recipes/casting/fiery/block.json
 fb2a23abec9b101125f99888392f6b859283fc7a data/tconstruct/recipes/casting/fiery/ingot.json
 e968f7b081e2987ec0a761aa2ed4859d9127819e data/tconstruct/recipes/common/encyclopedia.json
@@ -435,7 +435,7 @@ e2d1e920c4de86b85b9bd6064b20b0475319a2a9 data/tconstruct/recipes/smeltery/castin
 9dc732ee5fe897bcb01d25891e7651c5e7eca39b data/tconstruct/recipes/smeltery/casting/quartz/gem_sand_cast.json
 0f1ecf53cfb9b978a59db898b84a380795eb90b4 data/tconstruct/recipes/smeltery/casting/seared/smeltery_controller.json
 9ac98153e58b28ce2313fdb451d705b1dcae3aff data/tconstruct/recipes/smeltery/casts/gold/adze_head.json
-ed416ec8bba3bc4bac5e4cee48912a9b2b152191 data/tconstruct/recipes/smeltery/casts/gold/arrow.json
+aec5f1b7484462f0157be5b51cdfa1095beb8d07 data/tconstruct/recipes/smeltery/casts/gold/arrow.json
 579741faacb97423a627f3a97dac4a75860b4423 data/tconstruct/recipes/smeltery/casts/gold/boots_plating.json
 dec61d3f06d3f25a203300f6bc734f0471df87cf data/tconstruct/recipes/smeltery/casts/gold/bow_grip.json
 f24cb86905b4043a1e7eb9134b6875d1e5a09c41 data/tconstruct/recipes/smeltery/casts/gold/bow_limb.json
@@ -1101,8 +1101,10 @@ da5ef2f9c8c333ae2271cada050243d906e00f42 data/tconstruct/recipes/smeltery/meltin
 dd64387cfb3171f9c88aa6b166f63b2aa6ed9f9e data/tconstruct/recipes/smeltery/melting/quartz/ore_singular.json
 3175d01e81aee5b0c7952a9fad1695e2c40a31fa data/tconstruct/recipes/smeltery/melting/quartz/ore_sparse.json
 e7b68cab167a3f50f315aab7c110325a89a898f1 data/tconstruct/recipes/smeltery/melting/scorched/fluid_cannon.json
+a08be69e97fcc1f35870ecd06ee155091a5fe4ff data/tconstruct/recipes/smeltery/melting/scorched/lantern.json
 7809806a37cb2542d6ee4f510f642f644df3baa1 data/tconstruct/recipes/smeltery/melting/seared/fluid_cannon.json
 3727c8ba9d00395f721593aebe33f0978634dc97 data/tconstruct/recipes/smeltery/melting/seared/lantern.json
+c575462afc3904e7edbe999140ffb4c19ab89fe8 data/tconstruct/recipes/smeltery/melting/seared/seared_casting_tank.json
 c1193ae11e019f42380f38482ed651d52d73af57 data/tconstruct/recipes/tools/materials/casting/aluminum.json
 1be139d3fd9c4a3cb6bd5cb87a652f279f907926 data/tconstruct/recipes/tools/materials/casting/amethyst_bronze.json
 44d2a941bb17c5dca6dea5b5b49699ac3ccc7270 data/tconstruct/recipes/tools/materials/casting/bronze.json

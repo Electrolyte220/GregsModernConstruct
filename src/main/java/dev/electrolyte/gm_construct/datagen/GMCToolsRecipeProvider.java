@@ -9,7 +9,6 @@ import net.minecraftforge.fluids.FluidStack;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.registration.CastItemObject;
-import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 import slimeknights.tconstruct.library.data.recipe.IToolRecipeHelper;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -43,7 +42,7 @@ public class GMCToolsRecipeProvider implements IMaterialRecipeHelper, IToolRecip
         this.castCreation(consumer, TinkerToolParts.bowGrip,      TinkerSmeltery.bowGripCast,      folder);
 
         ItemCastingRecipeBuilder.tableRecipe(TinkerSmeltery.arrowCast)
-                .setFluidAndTime(TinkerFluids.moltenGold, 144)
+                .setFluidAndTime(Gold.getFluid(144))
                 .setCast(ItemTags.ARROWS, true)
                 .save(consumer, location(folder + "gold/arrow"));
 

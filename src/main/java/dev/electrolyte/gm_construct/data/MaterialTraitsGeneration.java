@@ -57,6 +57,6 @@ public class MaterialTraitsGeneration {
             trait.setDefaultTraits(List.of(new ModifierEntry(entry.getFirst(), entry.getSecond())));
         }
         MaterialTraitsJson json = trait.serialize();
-        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/traits/" + material.getName() + ".json"), GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(GMConstruct.id("tinkering/materials/traits/" + material.getName() + ".json"), GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 }

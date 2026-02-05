@@ -54,7 +54,7 @@ public class GMCDynamicResourcePack implements PackResources {
             Pair<String, String> entry = LangGeneration.INSTANCE.generateLangEntry(material);
             langObject.addProperty(entry.getFirst(), entry.getSecond());
         }
-        DATA.addToData(new ResourceLocation(GMConstruct.MOD_ID, "lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
+        DATA.addToData(GMConstruct.id("lang/en_us.json"), langObject.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     @Nullable

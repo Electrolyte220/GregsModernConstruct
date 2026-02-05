@@ -28,7 +28,7 @@ public class MaterialDataGeneration {
         ICondition conditions = new OrCondition(new NotCondition(new TagEmptyCondition("forge", "ingots/" + material.getName())), ConfigEnabledCondition.FORCE_INTEGRATION_MATERIALS);
         MaterialJson json = convertMaterialData(new DataMaterial(
                 new slimeknights.tconstruct.library.materials.definition.Material(key, 2, ORDER_COMPAT, false, false), conditions, null));
-        return new Pair<>(new ResourceLocation(GMConstruct.MOD_ID, "tinkering/materials/definition/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
+        return new Pair<>(GMConstruct.id("tinkering/materials/definition/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 
     protected MaterialJson convertMaterialData(DataMaterial data) {
