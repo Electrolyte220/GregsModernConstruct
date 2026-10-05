@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class GMCFluidTagsProvider extends FluidTagsProvider {
 
-    private static final TagKey<Fluid> MOLTEN_GOLD = ForgeRegistries.FLUIDS.tags().createTagKey(new ResourceLocation("forge", "molten_gold"));
+    private static final TagKey<Fluid> MOLTEN_GOLD = ForgeRegistries.FLUIDS.tags().createTagKey(ResourceLocation.fromNamespaceAndPath("forge", "molten_gold"));
 
     public GMCFluidTagsProvider(PackOutput output, CompletableFuture<Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, provider, GMConstruct.MOD_ID, existingFileHelper);

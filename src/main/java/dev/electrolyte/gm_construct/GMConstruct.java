@@ -12,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -28,16 +27,16 @@ public class GMConstruct {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final GTRegistrate REGISTRATE = GTRegistrate.create(MOD_ID);
 
-    public GMConstruct() {
+    public GMConstruct(FMLJavaModLoadingContext context) {
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(Type.COMMON, GMCConfig.COMMON_CONFIG);
+        context.registerConfig(Type.COMMON, GMCConfig.COMMON_CONFIG);
         REGISTRATE.registerRegistrate();
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupMaterials);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
+        context.getModEventBus().addListener(this::setupMaterials);
+        context.getModEventBus().addListener(this::gatherData);
     }
 
     public static ResourceLocation id(String location) {
-        return new ResourceLocation(GMConstruct.MOD_ID, location);
+        return ResourceLocation.fromNamespaceAndPath(GMConstruct.MOD_ID, location);
     }
 
     public static MaterialId materialId(String location) {

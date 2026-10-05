@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-04T22:19:00.345491613	Recipes
+// 1.20.1	2026-10-05T17:10:41.076180174	Recipes
 52479bf5a3ab63da04d73b8eebd3ed39f1a5d2f9 data/tconstruct/recipes/casting/fiery/block.json
 fb2a23abec9b101125f99888392f6b859283fc7a data/tconstruct/recipes/casting/fiery/ingot.json
 e968f7b081e2987ec0a761aa2ed4859d9127819e data/tconstruct/recipes/common/encyclopedia.json
@@ -42,6 +42,7 @@ cc1a3f4fd30927cd0dd508f734499bfda1d7a1da data/tconstruct/recipes/smeltery/alloys
 0d75e7179304cc42df56606637da2b77fcc263d0 data/tconstruct/recipes/smeltery/alloys/molten_enderium.json
 52bf07b7cd21ee86f974435fc70246edebd40400 data/tconstruct/recipes/smeltery/alloys/molten_hepatizon.json
 ad1b0ec7117475d83011220163c06c173079c7b9 data/tconstruct/recipes/smeltery/alloys/molten_invar.json
+2d632c8a8445feb465b70738678d2fa851359867 data/tconstruct/recipes/smeltery/alloys/molten_knightslime.json
 ed037fe7c32b0b7af4bef8ee9cb0bffb1f01c191 data/tconstruct/recipes/smeltery/alloys/molten_lumium.json
 07685f41d4ce8000dfeaaf2974f7e95ba1ccd625 data/tconstruct/recipes/smeltery/alloys/molten_manyullyn.json
 d0c0bb46b071978f2fd6fa1b5828f9cd1f640b52 data/tconstruct/recipes/smeltery/alloys/molten_netherite.json
@@ -243,6 +244,11 @@ f89c6e8abe11761af244e8213223e42436c6c4a1 data/tconstruct/recipes/smeltery/castin
 b77d5f0d66c050bcb7dda9c66a3ecde8538d7219 data/tconstruct/recipes/smeltery/casting/metal/knightmetal/ingot_sand_cast.json
 4926777e20653416a1f938626be3880b49d90bd8 data/tconstruct/recipes/smeltery/casting/metal/knightmetal/nugget_gold_cast.json
 aa220754c5892fa6eec222dc4a6a920fa1f70604 data/tconstruct/recipes/smeltery/casting/metal/knightmetal/nugget_sand_cast.json
+0c0e2b0f6b4c94023c29f4baccd72b436b4aaa46 data/tconstruct/recipes/smeltery/casting/metal/knightslime/block.json
+f067588093b9fa83403a008abbc299abc287f747 data/tconstruct/recipes/smeltery/casting/metal/knightslime/ingot_gold_cast.json
+307abc3230e9cf27358856c2173b9001b0b4e33f data/tconstruct/recipes/smeltery/casting/metal/knightslime/ingot_sand_cast.json
+57fc6296a010a6272773dfd3bc383497846bb8a7 data/tconstruct/recipes/smeltery/casting/metal/knightslime/nugget_gold_cast.json
+02d662733258ae9b9c61e295642a6c5a3da1ddc4 data/tconstruct/recipes/smeltery/casting/metal/knightslime/nugget_sand_cast.json
 8cd4ce59a3a2a7a1b4e73fa1bcc5aa09ab84401a data/tconstruct/recipes/smeltery/casting/metal/lead/block.json
 b39b0b86fd39db667ce09e1db37da88e2ce7564f data/tconstruct/recipes/smeltery/casting/metal/lead/coin_gold_cast.json
 1ace8b1ab7b1ea5b66d6851fcae8aae812b633de data/tconstruct/recipes/smeltery/casting/metal/lead/coin_sand_cast.json
@@ -569,6 +575,7 @@ aadfcb0e4103433b6384cb8723310df50e0ab75e data/tconstruct/recipes/smeltery/meltin
 a2b42400becc29d078e47fb7a4b8e01d917c9cce data/tconstruct/recipes/smeltery/melting/metal/cinderslime/ingot.json
 31a89dad172124d00ad74e356ae982188807e3ed data/tconstruct/recipes/smeltery/melting/metal/cinderslime/nugget.json
 ce86086bcf61fb4ec87a92c987c3729f18ccaaba data/tconstruct/recipes/smeltery/melting/metal/cobalt/block.json
+d4a0f92f960654797cc05af35aac81b54a94fbb1 data/tconstruct/recipes/smeltery/melting/metal/cobalt/cluster.json
 252356285a17c0580dd70aa69992f6d79e12bd2d data/tconstruct/recipes/smeltery/melting/metal/cobalt/dust.json
 1179497ea1a3fdfcfe27b6d7362c57ae03d97f85 data/tconstruct/recipes/smeltery/melting/metal/cobalt/ingot.json
 12d75a078969247b137048ced2f040d3f3d9707f data/tconstruct/recipes/smeltery/melting/metal/cobalt/nugget.json
@@ -788,6 +795,8 @@ d5fc8f0b7fccd4b921080c7ca2c31206a334f190 data/tconstruct/recipes/smeltery/meltin
 3ef7e388b13d53f6b2c2c5b88ce6eb123e6735cd data/tconstruct/recipes/smeltery/melting/metal/iron/tripwire.json
 b7dee1659d99492035b7c7619f1611677228fa88 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/axes.json
 b104e0a38b6faead9094cf71c9a3d0abaf0bf0ef data/tconstruct/recipes/smeltery/melting/metal/knightmetal/block.json
+51c5ca122a36330695ce9ea8b54147141c8b7558 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/cluster.json
+287faaa692346400dccdfc2934fa78f496b02343 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/fluid_cannon.json
 327a6de7ce48137818f9c2260ad9dcb79e24acbe data/tconstruct/recipes/smeltery/melting/metal/knightmetal/ingot.json
 461703be344dfd30b80e5e92d7e8fdd949240f46 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/leggings.json
 3cd730d878ec72eaffd5bc8de74e71366d3467a5 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/nugget.json
@@ -799,6 +808,9 @@ e4f7d247852eed1230c0efe4629c595116d844a0 data/tconstruct/recipes/smeltery/meltin
 954db61865dad84166fe9afb5f8b32408d207fd9 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/twilightforest_helmet.json
 de1e32d3cee375dc76d344129cf40acca9b72a76 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/twilightforest_ring.json
 b911dcf63d01e5d7bc5867148112c85b9c925fa9 data/tconstruct/recipes/smeltery/melting/metal/knightmetal/twilightforest_sword.json
+0c6403945ce16f72f6abda6f584fa7f438c00848 data/tconstruct/recipes/smeltery/melting/metal/knightslime/block.json
+46d886da202281f4d443ad580e7133b1294cc304 data/tconstruct/recipes/smeltery/melting/metal/knightslime/ingot.json
+14fdbb1c06f57c3f1d0c28188b75d611dc5575f6 data/tconstruct/recipes/smeltery/melting/metal/knightslime/nugget.json
 4327be721a68f25536e0b16d49893c118dc90637 data/tconstruct/recipes/smeltery/melting/metal/lead/allomancy_flakes.json
 84df0d48caba8eb61778a1b9244ad6973f7ef9b6 data/tconstruct/recipes/smeltery/melting/metal/lead/axes.json
 98d5dc043dabc00004ccacaad21b0b66a3aca297 data/tconstruct/recipes/smeltery/melting/metal/lead/block.json
@@ -994,6 +1006,7 @@ deb1cd7473ddb2737463c0c8e6b0e4d401f95495 data/tconstruct/recipes/smeltery/meltin
 4d0f310ccedd599b20d9bd427251447fe780100b data/tconstruct/recipes/smeltery/melting/metal/steel/block.json
 de809f7751474bae992bd844e375556459993916 data/tconstruct/recipes/smeltery/melting/metal/steel/boots.json
 b626b563a97fca0cd092c42d52dd7ac06a033961 data/tconstruct/recipes/smeltery/melting/metal/steel/chestplate.json
+ba04651ed4b9aebd796857f40ef04e8d90c8388d data/tconstruct/recipes/smeltery/melting/metal/steel/cluster.json
 2e2f96868233fa7c29c62ed2c25d900c89c4f208 data/tconstruct/recipes/smeltery/melting/metal/steel/coin.json
 3bc2a33b58c0f132d600a50e28bdb7510bcde57f data/tconstruct/recipes/smeltery/melting/metal/steel/dust.json
 c2f7537aaac6f39536179d19eedf864d3b94e48d data/tconstruct/recipes/smeltery/melting/metal/steel/gear.json
@@ -1118,8 +1131,10 @@ a0adbee1e9f5e3505bf9064cf3aa2936ef0a7491 data/tconstruct/recipes/tools/materials
 35c8e843a906207af935f56fdff8ec8d9b3f2076 data/tconstruct/recipes/tools/materials/casting/invar.json
 e329b5ac27e1a6564b27d1f6199f8a7b5430125f data/tconstruct/recipes/tools/materials/casting/iron.json
 9020b3b03fb7b89f9c4322de8859d178b35957fe data/tconstruct/recipes/tools/materials/casting/knightmetal.json
+ab7e8e0e5b000cf7e4b8b3d106bed08b54e92f28 data/tconstruct/recipes/tools/materials/casting/knightslime.json
 81f8d4fc77ea18ab119c11fd0580b70ff8fb1e59 data/tconstruct/recipes/tools/materials/casting/lead.json
 dd93de8dc4d121fd3f9de9eda8c22a98932a95c1 data/tconstruct/recipes/tools/materials/casting/manyullyn.json
+0e765440d901e44bddda46609f3e664044189de2 data/tconstruct/recipes/tools/materials/casting/nicrosil.json
 a26221d91aa249f2d6282284e0281c4bcb768a01 data/tconstruct/recipes/tools/materials/casting/osmium.json
 9a9bd69077af9dd4ae9d0b51f28563e73d7d0470 data/tconstruct/recipes/tools/materials/casting/pewter.json
 70c152b2f7d2620fc3059699d72b332ce259c583 data/tconstruct/recipes/tools/materials/casting/pig_iron.json
@@ -1157,9 +1172,11 @@ fd9d9ee0a8bacbd3d4c52a8d85517955576673eb data/tconstruct/recipes/tools/materials
 3dd475b6bc1efa100e59dcfaa8503d37d0eaa027 data/tconstruct/recipes/tools/materials/melting/iron.json
 78f18966b4370672a9103eae3ced211676c2d79d data/tconstruct/recipes/tools/materials/melting/ironwood.json
 9e5de22208ed30691cfa336af6c71e9b49163467 data/tconstruct/recipes/tools/materials/melting/knightmetal.json
+26642970b09811b6896b670b69ea2d7e6ea2dc45 data/tconstruct/recipes/tools/materials/melting/knightslime.json
 c638f64eed294be274fe4594b41dbb22c629ce44 data/tconstruct/recipes/tools/materials/melting/lead.json
 bd2534d07a05f742281ddb3e52844f6ea90f39ca data/tconstruct/recipes/tools/materials/melting/manyullyn.json
 5e59f9dbd3dbb2d83656cbcf7c2dce49b5e2ed93 data/tconstruct/recipes/tools/materials/melting/necronium.json
+3cbe59e0760ad88e4641a67792c9d29ba402c863 data/tconstruct/recipes/tools/materials/melting/nicrosil.json
 9ff023113b8aff4d2e164018cc7fb27da175d213 data/tconstruct/recipes/tools/materials/melting/osmium.json
 0ffccc212d183ecf6058488c58c684846bd46339 data/tconstruct/recipes/tools/materials/melting/pewter.json
 c7cfc44d014ec912c43a3cff12b1c9664fdd5ab2 data/tconstruct/recipes/tools/materials/melting/pig_iron.json

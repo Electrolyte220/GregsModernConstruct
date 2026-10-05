@@ -112,6 +112,12 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
 
     private void addFoundryRecipes(Consumer<FinishedRecipe> consumer) {
         String meltingFolder = "smeltery/melting/scorched/";
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.scorchedBasin), TinkerFluids.scorchedStone, FluidValues.BRICK * 7, 2.5f)
+                .addByproduct(FluidOutput.fromFluid(Gold.getFluid(), 16 * 10))
+                .save(consumer, location(meltingFolder + "casting_basin"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.scorchedTable), TinkerFluids.scorchedStone, FluidValues.BRICK * 7, 2.5f)
+                .addByproduct(FluidOutput.fromFluid(Gold.getFluid(), 16 * 4))
+                .save(consumer, location(meltingFolder + "casting_table"));
         MeltingRecipeBuilder.melting(NoContainerIngredient.of(TinkerSmeltery.scorchedLantern), TinkerFluids.scorchedStone, FluidValues.BRICK * 2, 1.0f)
                 .addByproduct(TinkerFluids.moltenQuartz.result(FluidValues.GEM_SHARD))
                 .addByproduct(FluidOutput.fromFluid(Iron.getFluid(), 16 * 3))
@@ -354,14 +360,17 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                 .setDamagable(netheriteSizes)
                 .addByproduct(TinkerFluids.moltenDiamond.result(FluidValues.GEM))
                 .save(consumer, location(metalFolder + "netherite/shovel"));
-        MeltingRecipeBuilder.melting(ItemNameIngredient.from(new ResourceLocation("tools_complement", "netherite_excavator")), TinkerFluids.moltenNetherite, 144)
+        MeltingRecipeBuilder.melting(ItemNameIngredient.from(ResourceLocation.fromNamespaceAndPath("tools_complement", "netherite_excavator")), TinkerFluids.moltenNetherite, 144)
                 .setDamagable(netheriteSizes)
                 .addByproduct(TinkerFluids.moltenDiamond.result(FluidValues.GEM * 11))
                 .save(withCondition(consumer, new ItemExistsCondition("tools_complement", "netherite_excavator")), location(metalFolder + "netherite/excavator"));
-        MeltingRecipeBuilder.melting(ItemNameIngredient.from(new ResourceLocation("tools_complement", "netherite_hammer")), TinkerFluids.moltenNetherite, 144)
+        MeltingRecipeBuilder.melting(ItemNameIngredient.from(ResourceLocation.fromNamespaceAndPath("tools_complement", "netherite_hammer")), TinkerFluids.moltenNetherite, 144)
                 .setDamagable(netheriteSizes)
                 .addByproduct(TinkerFluids.moltenDiamond.result(FluidValues.GEM * 13))
                 .save(withCondition(consumer, new ItemExistsCondition("tools_complement", "netherite_hammer")), location(metalFolder + "netherite/hammer"));
+
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerSmeltery.endFluidCannon), TinkerFluids.moltenKnightmetal, 144 * 5, 2.5f)
+                .save(consumer, location(metalFolder + "knightmetal/fluid_cannon"));
 
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerModifiers.silkyCloth), FluidOutput.fromFluid(RoseGold.getFluid(), 144), GTMaterialHelper.findTemp(RoseGold), IMeltingRecipe.calcTimeFactor(144))
                 .save(consumer, location(metalFolder + "rose_gold/silky_cloth"));
@@ -374,6 +383,13 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
 
         MeltingRecipeBuilder.melting(Ingredient.of(TinkerCommons.cobaltPlatform), FluidOutput.fromFluid(Cobalt.getFluid(), 16 * 10), GTMaterialHelper.findTemp(Copper), IMeltingRecipe.calcTimeFactor(16*10))
                 .save(consumer, location(metalFolder + "cobalt/platform"));
+
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerWorld.steelCluster), TinkerFluids.moltenSteel, 16 * 4, 5/2f)
+                .save(consumer, location(metalFolder + "steel/cluster"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerWorld.cobaltCluster), TinkerFluids.moltenCobalt, 16 * 4, 5/2f)
+                .save(consumer, location(metalFolder + "cobalt/cluster"));
+        MeltingRecipeBuilder.melting(Ingredient.of(TinkerWorld.knightmetalCluster), TinkerFluids.moltenKnightmetal, 16 * 4, 5/2f)
+                .save(consumer, location(metalFolder + "knightmetal/cluster"));
     }
 
     private void addAlloyRecipes(Consumer<FinishedRecipe> consumer) {
@@ -435,6 +451,12 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
                                 .addInput(TinkerFluids.moltenDebris.ingredient(16 * 4))
                                 .addInput(Gold.getFluid(),16 * 4)::save)
                 .build(consumer, prefix(TinkerFluids.moltenNetherite, folder));
+
+        AlloyRecipeBuilder.alloy(TinkerFluids.moltenKnightslime, 144 * 2)
+                .addInput(TinkerFluids.moltenCobalt.ingredient(144))
+                .addInput(TinkerFluids.enderSlime.ingredient(FluidValues.SLIMEBALL))
+                .addInput(TinkerFluids.moltenObsidian.ingredient(FluidValues.BRICK))
+                .save(consumer, prefix(TinkerFluids.moltenKnightslime, folder));
 
         Consumer<FinishedRecipe> wrapped;
         wrapped = withCondition(consumer, tagCondition("ingots/tin"));
@@ -618,6 +640,7 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
         metal(consumer, TinkerFluids.moltenHepatizon  ).metal();
         metal(consumer, TinkerFluids.moltenCinderslime).metal();
         metal(consumer, TinkerFluids.moltenQueensSlime).metal();
+        metal(consumer, TinkerFluids.moltenKnightslime).metal();
 
         String tf = "twilightforest";
         CommonRecipe tfHelmet     = new ToolItemMelting(5, tf, "helmet");
@@ -683,7 +706,7 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
 
     private void addCompatRecipes(Consumer<FinishedRecipe> consumer) {
         String folder = "compat/";
-        ItemOutput andesiteAlloy = ItemNameOutput.fromName(new ResourceLocation("create", "andesite_alloy"));
+        ItemOutput andesiteAlloy = ItemNameOutput.fromName(ResourceLocation.fromNamespaceAndPath("create", "andesite_alloy"));
         Consumer<FinishedRecipe> createConsumer = withCondition(consumer, new ModLoadedCondition("create"));
         ItemCastingRecipeBuilder.basinRecipe(andesiteAlloy)
                 .setCast(Blocks.ANDESITE, true)
@@ -697,9 +720,9 @@ public class GMCSmelteryRecipeProvider implements ISmelteryRecipeHelper {
         int goldPerBlock = 16;
         String ceramics = "ceramics";
         String ceramicsFolder = folder + ceramics + "/";
-        Function<String,ResourceLocation> ceramicsId = name -> new ResourceLocation(ceramics, name);
-        Function<String,Ingredient> ceramicsItem = name -> ItemNameIngredient.from(new ResourceLocation(ceramics, name));
-        Function<String,ItemOutput> ceramicsOutput = name -> ItemNameOutput.fromName(new ResourceLocation(ceramics, name));
+        Function<String,ResourceLocation> ceramicsId = name -> ResourceLocation.fromNamespaceAndPath(ceramics, name);
+        Function<String,Ingredient> ceramicsItem = name -> ItemNameIngredient.from(ResourceLocation.fromNamespaceAndPath(ceramics, name));
+        Function<String,ItemOutput> ceramicsOutput = name -> ItemNameOutput.fromName(ResourceLocation.fromNamespaceAndPath(ceramics, name));
         Consumer<FinishedRecipe> ceramicsConsumer = withCondition(consumer, new ModLoadedCondition(ceramics));
         String porcelainFolder = ceramicsFolder + "porcelain/";
         MeltingRecipeBuilder.melting(ceramicsItem.apply("golden_bricks_slab"), TinkerFluids.moltenPorcelain, FluidValues.BRICK * 2, 1.33f)

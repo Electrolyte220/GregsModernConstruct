@@ -29,7 +29,7 @@ public abstract class SmelteryRecipeBuilderMixin {
     @WrapMethod(method = "oreberry", remap = false)
     private SmelteryRecipeBuilder gmc$oldOreberry(Operation<SmelteryRecipeBuilder> original) {
         baseUnit = 144;
-        itemMelting(1 / 9f, "oreberry", 1 / 3f, new ResourceLocation("oreberriesreplanted", name.getPath() + "_oreberry"), false);
+        itemMelting(1 / 9f, "oreberry", 1 / 3f, ResourceLocation.fromNamespaceAndPath("oreberriesreplanted", name.getPath() + "_oreberry"), false);
         return ((SmelteryRecipeBuilder) (Object) this);
     }
 }

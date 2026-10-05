@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.mojang.datafixers.util.Pair;
 import dev.electrolyte.gm_construct.GMConstruct;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.crafting.conditions.OrCondition;
@@ -27,7 +28,7 @@ public class MaterialDataGeneration {
     protected Pair<ResourceLocation, byte[]> generateMaterialData(MaterialId key, Material material) {
         ICondition conditions = new OrCondition(new NotCondition(new TagEmptyCondition("forge", "ingots/" + material.getName())), ConfigEnabledCondition.FORCE_INTEGRATION_MATERIALS);
         MaterialJson json = convertMaterialData(new DataMaterial(
-                new slimeknights.tconstruct.library.materials.definition.Material(key, 2, ORDER_COMPAT, false, false), conditions, null));
+                new slimeknights.tconstruct.library.materials.definition.Material(key, 2, ORDER_COMPAT, Rarity.COMMON,false, false), conditions, null));
         return new Pair<>(GMConstruct.id("tinkering/materials/definition/" + material.getName() + ".json"), MaterialManager.GSON.toJsonTree(json).toString().getBytes(StandardCharsets.UTF_8));
     }
 
@@ -38,9 +39,9 @@ public class MaterialDataGeneration {
             redirect = null;
         }
         if(material == null) {
-            return new MaterialJson(data.condition, null, null, null, null, redirect);
+            return new MaterialJson(data.condition, null, null, null, null, null, redirect);
         }
-        return new MaterialJson(data.condition, material.isCraftable(), material.getTier(), material.getSortOrder(), material.isHidden(), redirect);
+        return new MaterialJson(data.condition, material.isCraftable(), material.getTier(), material.getSortOrder(), material.getRarity(), material.isHidden(), redirect);
     }
 
     protected record DataMaterial(@Nullable IMaterial material, @Nullable ICondition condition, JsonRedirect[] redirect) {}

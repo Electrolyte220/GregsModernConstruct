@@ -19,7 +19,7 @@ public class MaterialFluidTooltipProvider extends AbstractFluidTooltipProvider {
                 .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.block")), 1296)
                 .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.ingot")), 144)
                 .addUnitRaw(Util.makeDescriptionId("gui", TConstruct.getResource("fluid.nugget")), 16);
-        addRedirect(new ResourceLocation(TConstruct.MOD_ID,"metal"), GMConstruct.id("metal"));
+        addRedirect(ResourceLocation.fromNamespaceAndPath(TConstruct.MOD_ID,"metal"), GMConstruct.id("metal"));
     }
 
     @Override

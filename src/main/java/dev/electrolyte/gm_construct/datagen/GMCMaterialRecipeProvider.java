@@ -50,6 +50,7 @@ public class GMCMaterialRecipeProvider implements IMaterialRecipeHelper, ICondit
         materialMeltingCasting(consumer, MaterialIds.hepatizon,   TinkerFluids.moltenHepatizon,   folder);
         materialMeltingCasting(consumer, MaterialIds.manyullyn,   TinkerFluids.moltenManyullyn,   folder);
         materialMeltingCasting(consumer, MaterialIds.knightmetal, TinkerFluids.moltenKnightmetal, folder);
+        materialMeltingCasting(consumer, MaterialIds.knightslime, TinkerFluids.moltenKnightslime, folder);
         materialMeltingComposite(consumer, MaterialIds.leather, MaterialIds.ancientHide, TinkerFluids.moltenDebris, 144, folder);
 
         materialMelting(consumer, MaterialIds.ancient, TinkerFluids.moltenDebris, 144, folder);
@@ -87,6 +88,10 @@ public class GMCMaterialRecipeProvider implements IMaterialRecipeHelper, ICondit
         MaterialMeltingRecipeBuilder.material(MaterialIds.fiery, TinkerFluids.fieryLiquid, FluidValues.BOTTLE)
                 .addByproduct(Iron.getFluid(144))
                 .save(fieryConsumer, location(folder + "melting/fiery"));
+
+        materialMeltingCasting(
+                withCondition(consumer, new OrCondition(tagCondition("ingots/nicrosil"), tagCondition("ingots/tin"), tagCondition("ingots/nickel"), tagCondition("ingots/chromium"))),
+                MaterialIds.nicrosil, TinkerFluids.moltenNicrosil, folder);
 
         materialMeltingCasting(consumer, MaterialIds.gold, Gold, folder);
     }

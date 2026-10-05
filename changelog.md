@@ -1,4 +1,2 @@
-- Update Tinker's Construct to 3.11.2.166
-- Add missing recipe for gold arrow cast
-- Add missing melting recipe for scorched lantern and seared casting tank
-- Add GTCEu liquid gold to forge:molten_gold tag
+- Update Tinker's Construct to 3.12.1.231
+- Fix knightslime, nicrosil, & metal cluster recipes
